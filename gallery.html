@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Album Gallery | BLOK M Studio Printing</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Premium print album collections by BLOK M Studio. Preview the portfolio for Studio Portraits, Wedding Albums, Pre-Wedding Albums, and School Yearbooks.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="gallery-style.css">
+</head>
+<body class="gallery-body">
+
+    <!-- Floating Navbar -->
+    <header class="main-header">
+        <div class="logo-area">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="logo-img">
+        </div>
+        
+        <div class="header-right">
+            <a href="index.html" class="back-home-btn">
+                <span class="btn-icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                </span>
+                BACK TO HOME
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="gallery-container">
+        
+        <!-- Dynamic Header Text Overlay -->
+        <section class="gallery-heading-area">
+            <span class="gallery-tag" id="gallery-subtitle">BLOK M STORIES</span>
+            <h1 class="gallery-title" id="gallery-title">ALBUM GALLERY</h1>
+            <p class="gallery-desc" id="gallery-desc">Loading photo albums...</p>
+        </section>
+
+        <!-- Scrolling Photo Walls (3 Rows) -->
+        <section class="photo-wall-section">
+            
+            <!-- Row 1: Sliding Left -->
+            <div class="marquee-row row-left" id="row-1">
+                <div class="row-track" id="track-1">
+                    <!-- Photo cards injected dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- Row 2: Sliding Right -->
+            <div class="marquee-row row-right" id="row-2">
+                <div class="row-track" id="track-2">
+                    <!-- Photo cards injected dynamically by JS -->
+                </div>
+            </div>
+
+            <!-- Row 3: Sliding Left -->
+            <div class="marquee-row row-left" id="row-3">
+                <div class="row-track" id="track-3">
+                    <!-- Photo cards injected dynamically by JS -->
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Fullscreen Lightbox Preview Modal -->
+    <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close Preview">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+        
+        <div class="lightbox-content">
+            <img src="" id="lightbox-img" alt="Large Album Preview">
+        </div>
+    </div>
+
+    <!-- Script Link -->
+    <script src="gallery-script.js"></script>
+</body>
+</html>

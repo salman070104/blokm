@@ -1,0 +1,1072 @@
+/* ==========================================================================
+   CSS SYSTEM DESIGN - LUNDEV CAROUSEL SLIDER (TIKTOK STYLE)
+   ========================================================================== */
+
+:root {
+    /* Color Palette */
+    --color-bg-deep: #07080c;
+    
+    /* CMYK Vibrant Accent Highlights */
+    --color-cyan: #00f0ff;
+    --color-magenta: #ff007f;
+    --color-yellow: #ffdf00;
+    --color-green: #00ff88;
+    --color-white: #ffffff;
+    
+    --color-text-primary: #ffffff;
+    --color-text-secondary: rgba(255, 255, 255, 0.7);
+    --color-text-muted: rgba(255, 255, 255, 0.4);
+    
+    /* Active colors - managed dynamically by JS based on slide index */
+    --color-accent: var(--color-cyan);
+    --color-accent-rgb: 0, 240, 255;
+    
+    /* Typography */
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Transitions */
+    --transition-smooth: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-quick: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-deep);
+    color: var(--color-text-primary);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   FLOATING NAV BAR (GLASSMORPHISM)
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    z-index: 1000;
+    background: linear-gradient(to bottom, rgba(7, 8, 12, 0.85) 0%, rgba(7, 8, 12, 0) 100%);
+    transition: var(--transition-quick);
+}
+
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.35rem;
+    letter-spacing: 2px;
+}
+
+.logo-img {
+    height: 20px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+    transition: var(--transition-quick);
+}
+
+.logo-img:hover {
+    transform: scale(1.04);
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.main-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    position: relative;
+    padding: 0.2rem 0;
+    transition: var(--transition-quick);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent);
+    transition: var(--transition-quick);
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--color-white);
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.cta-nav-btn {
+    background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.7) 100%);
+    color: #000000;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    text-decoration: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.3);
+    transition: var(--transition-quick);
+}
+
+.cta-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.5);
+}
+
+/* ==========================================================================
+   CAROUSEL MAIN CONTAINER
+   ========================================================================== */
+.carousel {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: var(--color-bg-deep);
+}
+
+/* 1. SLIDE LIST */
+.carousel .list .item {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0 0 0 0;
+    z-index: 1;
+}
+
+.carousel .list .item .slide-bg {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    inset: 0 0 0 0;
+    transition: filter 0.8s ease;
+}
+
+/* Backdrop gradient for text legibility */
+.carousel .list .item .slide-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 25% 40%, rgba(7, 8, 12, 0.45) 0%, rgba(7, 8, 12, 0.85) 55%, rgba(7, 8, 12, 0.98) 100%);
+    z-index: 2;
+}
+
+/* 2. TEXT CONTENT */
+.carousel .list .item .content {
+    position: absolute;
+    top: 32%;
+    left: 7%;
+    width: 1140px;
+    max-width: 80%;
+    z-index: 10;
+    color: var(--color-white);
+    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.carousel .list .item .content .author {
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--color-accent);
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    transition: color 0.6s ease;
+}
+
+.carousel .list .item .content .title,
+.carousel .list .item .content .topic {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 4.8rem;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.carousel .list .item .content .title {
+    color: var(--color-white);
+}
+
+.carousel .list .item .content .topic {
+    color: var(--color-accent);
+    margin-bottom: 1.5rem;
+    transition: color 0.6s ease;
+}
+
+.carousel .list .item .content .des {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+}
+
+.carousel .list .item .content .buttons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.carousel .list .item .content .primary-btn {
+    display: inline-block;
+    padding: 1.1rem 2.2rem;
+    background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.6) 100%);
+    color: #000000;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(var(--color-accent-rgb), 0.25);
+    transition: var(--transition-smooth);
+}
+
+.carousel .list .item .content .primary-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.45);
+}
+
+.carousel .list .item .content .secondary-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.carousel .list .item .content .secondary-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-4px);
+}
+
+.carousel .list .item .content .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-accent);
+    transition: var(--transition-smooth);
+}
+
+/* ==========================================================================
+   STAGGERED TEXT ANIMATIONS (FIRST ITEM ONLY)
+   ========================================================================== */
+.carousel .list .item:nth-child(1) {
+    z-index: 2; /* Active background slide is always index 1 */
+}
+
+/* Stagger entrance on first slide loading */
+.carousel .list .item:nth-child(1) .content .author,
+.carousel .list .item:nth-child(1) .content .title,
+.carousel .list .item:nth-child(1) .content .topic,
+.carousel .list .item:nth-child(1) .content .des,
+.carousel .list .item:nth-child(1) .content .buttons {
+    transform: translateY(40px);
+    filter: blur(15px);
+    opacity: 0;
+    animation: showContent 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes showContent {
+    to {
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+
+.carousel .list .item:nth-child(1) .content .author {
+    animation-delay: 0.2s;
+}
+.carousel .list .item:nth-child(1) .content .title {
+    animation-delay: 0.3s;
+}
+.carousel .list .item:nth-child(1) .content .topic {
+    animation-delay: 0.4s;
+}
+.carousel .list .item:nth-child(1) .content .des {
+    animation-delay: 0.5s;
+}
+.carousel .list .item:nth-child(1) .content .buttons {
+    animation-delay: 0.6s;
+}
+
+/* ==========================================================================
+   THUMBNAILS COMPONENT
+   ========================================================================== */
+.carousel .thumbnail {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    width: max-content;
+    z-index: 100;
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.carousel .thumbnail .item {
+    width: 150px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.carousel .thumbnail .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    transition: transform 0.6s ease;
+}
+
+.carousel .thumbnail .item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(7, 8, 12, 0.9) 0%, rgba(7, 8, 12, 0.3) 60%, rgba(7, 8, 12, 0) 100%);
+    z-index: 2;
+}
+
+.carousel .thumbnail .item .content {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    z-index: 10;
+    color: var(--color-white);
+}
+
+.carousel .thumbnail .item .content .title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.15rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.carousel .thumbnail .item .content .description {
+    font-size: 0.55rem;
+    color: var(--color-accent);
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.carousel .thumbnail .item .border-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    border: 2px solid transparent;
+    z-index: 15;
+    pointer-events: none;
+    transition: var(--transition-quick);
+}
+
+/* Thumbnail Hover states */
+.carousel .thumbnail .item:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.carousel .thumbnail .item:hover img {
+    transform: scale(1.06);
+}
+
+.carousel .thumbnail .item:hover .border-glow {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* ==========================================================================
+   NEXT SLIDE ANIMATION TRIGGER
+   ========================================================================== */
+.carousel.next .list .item:nth-child(1) .slide-bg {
+    width: var(--zoom-start-width, 150px);
+    height: var(--zoom-start-height, 220px);
+    position: absolute;
+    top: var(--zoom-start-top, calc(100vh - 270px));
+    bottom: auto;
+    left: var(--zoom-start-left, 50%);
+    border-radius: var(--zoom-start-radius, 20px);
+    animation: showImage 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    z-index: 5;
+}
+
+@keyframes showImage {
+    from {
+        top: var(--zoom-start-top, calc(100vh - 270px));
+        left: var(--zoom-start-left, 50%);
+        width: var(--zoom-start-width, 150px);
+        height: var(--zoom-start-height, 220px);
+        border-radius: var(--zoom-start-radius, 20px);
+    }
+    to {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+}
+
+/* Shifting sisa thumbnail card ke kiri saat next ditekan */
+.carousel.next .thumbnail .item {
+    animation: effectNext 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes effectNext {
+    from {
+        transform: translateX(170px); /* 150px card width + 20px gap */
+    }
+}
+
+/* Animate newly added last card in thumbnail */
+.carousel.next .thumbnail .item:nth-last-child(1) {
+    animation: showThumbnailNew 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes showThumbnailNew {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 150px;
+        opacity: 1;
+    }
+}
+
+/* ==========================================================================
+   PREVIOUS SLIDE ANIMATION TRIGGER
+   ========================================================================== */
+.carousel.prev .list .item:nth-child(2) {
+    z-index: 5;
+}
+
+.carousel.prev .list .item:nth-child(2) .slide-bg {
+    /* Shrinking fullscreen active background slide to thumbnail card size */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    animation: shrinkImage 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    z-index: 5;
+}
+
+@keyframes shrinkImage {
+    from {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+    }
+    to {
+        top: var(--zoom-start-top, calc(100vh - 270px));
+        left: var(--zoom-start-left, 50%);
+        width: var(--zoom-start-width, 150px);
+        height: var(--zoom-start-height, 220px);
+        border-radius: var(--zoom-start-radius, 20px);
+    }
+}
+
+/* First item in thumbnail newly prepended fades in */
+.carousel.prev .thumbnail .item:nth-child(1) {
+    animation: showThumbnailNew 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+/* Sisa item thumbnail bergeser ke kanan */
+.carousel.prev .thumbnail .item:not(:nth-child(1)) {
+    animation: effectPrev 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+}
+
+@keyframes effectPrev {
+    from {
+        transform: translateX(-170px);
+    }
+}
+
+/* ==========================================================================
+   NAV ARROWS AND INTERACTIVE CONTROLS
+   ========================================================================== */
+.carousel .arrows {
+    position: absolute;
+    top: 80%;
+    left: 7%;
+    z-index: 150;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.carousel .arrows button {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--color-white);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.carousel .arrows button:hover {
+    background: var(--color-white);
+    color: #000000;
+    border-color: var(--color-white);
+    transform: scale(1.06);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.25);
+}
+
+.carousel .arrows button:active {
+    transform: scale(0.95);
+}
+
+/* Slide Indicator Counter */
+.carousel .slide-indicator {
+    position: absolute;
+    top: 82%;
+    left: 7%;
+    z-index: 150;
+    display: flex;
+    align-items: baseline;
+    font-family: var(--font-heading);
+    font-weight: 700;
+}
+
+.carousel .slide-indicator .current {
+    font-size: 2.5rem;
+    color: var(--color-white);
+    line-height: 1;
+}
+
+.carousel .slide-indicator .divider {
+    font-size: 1.2rem;
+    color: var(--color-text-muted);
+    margin: 0 0.5rem;
+}
+
+.carousel .slide-indicator .total {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+}
+
+/* Time/Progress bar (Top of Page) */
+.time-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 2000;
+}
+
+.time-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-white) 100%);
+    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Lock interactions during transitions */
+.carousel.next .arrows button,
+.carousel.prev .arrows button,
+.carousel.next .thumbnail .item,
+.carousel.prev .thumbnail .item {
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (MEDIA QUERIES)
+   ========================================================================== */
+
+@media (max-width: 1100px) {
+    .carousel .list .item .content {
+        top: 30%;
+        left: 5%;
+        max-width: 90%;
+    }
+    
+    .carousel .list .item .content .title,
+    .carousel .list .item .content .topic {
+        font-size: 3.8rem;
+    }
+    
+    .carousel .thumbnail {
+        left: 45%;
+        bottom: 50px;
+    }
+    
+    .carousel .arrows {
+        left: 5%;
+        top: 82%;
+    }
+    
+    .carousel .slide-indicator {
+        left: 5%;
+        top: 84%;
+    }
+}
+
+/* ==========================================================================
+   MOBILE SIDEBAR DRAWER NAVIGATION (GLASSMORPHISM)
+   ========================================================================== */
+
+/* Hide checkbox toggle */
+.mobile-nav-toggle {
+    display: none;
+}
+
+/* Hamburger button styling (Desktop hidden) */
+.hamburger-menu-btn {
+    display: none;
+}
+
+/* Sidebar Navigation Menu (Desktop hidden) */
+.mobile-sidebar-nav {
+    display: none;
+}
+
+/* Sidebar Overlay (Desktop hidden) */
+.sidebar-overlay {
+    display: none;
+}
+@media (max-width: 768px) {
+    /* Show Hamburger button */
+    .hamburger-menu-btn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 24px;
+        height: 18px;
+        cursor: pointer;
+        z-index: 3500; /* Raised so it stays clickable */
+        position: relative;
+        margin-left: 1.5rem;
+    }
+    
+    .hamburger-bar {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-white);
+        border-radius: 4px;
+        transition: var(--transition-quick);
+        transform-origin: left center;
+    }
+    
+    /* Mobile Sidebar Menu (Glassmorphism Slide Drawer) */
+    .mobile-sidebar-nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -320px; /* Initially hidden offscreen */
+        width: 300px;
+        height: 100vh;
+        background: rgba(7, 8, 12, 0.94);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-left: 1px solid rgba(255, 255, 255, 0.08);
+        z-index: 3000;
+        flex-direction: column;
+        padding: 3rem 2rem;
+        box-shadow: -15px 0 45px rgba(0, 0, 0, 0.7);
+        transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    /* Overlay cover */
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(4, 5, 8, 0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 2900;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+    
+    /* Checkbox Triggered States */
+    .mobile-nav-toggle:checked ~ .mobile-sidebar-nav {
+        right: 0; /* Slide in sidebar */
+    }
+    
+    .mobile-nav-toggle:checked ~ .sidebar-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+    
+    /* Animated Hamburger Morph on Checked */
+    .mobile-nav-toggle:checked ~ .main-header .hamburger-menu-btn .bar-top {
+        transform: rotate(45deg) translate(2px, -1px);
+        background-color: var(--color-accent);
+    }
+    
+    .mobile-nav-toggle:checked ~ .main-header .hamburger-menu-btn .bar-mid {
+        opacity: 0;
+        transform: scale(0);
+    }
+    
+    .mobile-nav-toggle:checked ~ .main-header .hamburger-menu-btn .bar-bot {
+        transform: rotate(-45deg) translate(2px, 1px);
+        background-color: var(--color-accent);
+    }
+    
+    /* Sidebar header / Close button styling */
+    .sidebar-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3.5rem;
+    }
+    
+    .sidebar-logo {
+        height: 18px;
+        width: auto;
+    }
+    
+    .sidebar-close-btn {
+        color: var(--color-text-secondary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition-quick);
+    }
+    
+    .sidebar-close-btn:hover {
+        color: var(--color-white);
+        transform: scale(1.1);
+    }
+    
+    /* Sidebar links list style */
+    .sidebar-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.8rem;
+        flex-grow: 1;
+    }
+    
+    .sidebar-link {
+        font-family: var(--font-heading);
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        letter-spacing: 2px;
+        transition: var(--transition-quick);
+        padding: 0.25rem 0;
+        display: inline-block;
+        border-bottom: 2px solid transparent;
+        width: max-content;
+    }
+    
+    .sidebar-link:hover,
+    .sidebar-link.active {
+        color: var(--color-white);
+        border-bottom-color: var(--color-accent);
+        transform: translateX(6px);
+    }
+    
+    /* Footer bottom elements */
+    .sidebar-footer {
+        margin-top: auto;
+    }
+    
+    .sidebar-cta-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.7) 100%);
+        color: #000000;
+        font-weight: 700;
+        font-family: var(--font-heading);
+        text-decoration: none;
+        padding: 0.9rem;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        letter-spacing: 1.5px;
+        box-shadow: 0 8px 20px rgba(var(--color-accent-rgb), 0.3);
+        transition: var(--transition-quick);
+    }
+    
+    .sidebar-cta-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(var(--color-accent-rgb), 0.5);
+    }
+
+    /* Compact Header Bar for Mobile */
+    .main-header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 5%;
+        background: rgba(7, 8, 12, 0.85);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .main-nav {
+        display: none; /* Hidden on mobile - using gorgeous bottom nav */
+    }
+    
+    .header-right {
+        width: auto;
+        flex-direction: row;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+
+    .cta-nav-btn {
+        padding: 0.5rem 1.25rem;
+        font-size: 0.75rem;
+        border-radius: 20px;
+    }
+
+    /* Content Area Auto Scaling */
+    .carousel .list .item .content {
+        top: 25%;
+        left: 5%;
+        width: 90%;
+        text-align: center;
+    }
+    
+    .carousel .list .item .content .author {
+        font-size: 0.75rem;
+        letter-spacing: 3px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel .list .item .content .title,
+    .carousel .list .item .content .topic {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+    }
+    
+    .carousel .list .item .content .des {
+        max-width: 100%;
+        font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+        margin-bottom: 1.5rem;
+        line-height: 1.5;
+        /* Truncate text on very small heights to avoid overlap */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .carousel .list .item .content .buttons {
+        justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        gap: 0.75rem;
+    }
+    
+    .carousel .list .item .content .primary-btn,
+    .carousel .list .item .content .secondary-btn {
+        width: auto;
+        flex: 1;
+        max-width: 200px;
+        padding: 0.9rem 1.25rem;
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+        justify-content: center;
+    }
+    
+    /* Thumbnail Grid Positioning */
+    .carousel .thumbnail {
+        left: 5%;
+        width: 90%;
+        bottom: 35px;
+        overflow-x: auto;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+        gap: 12px;
+    }
+    
+    .carousel .thumbnail .item {
+        width: 95px;
+        height: 140px;
+        border-radius: 12px;
+    }
+
+    .carousel .thumbnail .item img {
+        border-radius: 12px;
+    }
+
+    .carousel .thumbnail .item .content {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+
+    .carousel .thumbnail .item .content .title {
+        font-size: 0.65rem;
+    }
+
+    .carousel .thumbnail .item .content .description {
+        font-size: 0.5rem;
+    }
+    
+    /* Center controls above the bottom nav */
+    .carousel .arrows {
+        left: 0;
+        width: 100%;
+        justify-content: center;
+        top: 82%;
+    }
+
+    .carousel .arrows button {
+        width: 44px;
+        height: 44px;
+    }
+    
+    .carousel .slide-indicator {
+        display: none;
+    }
+}
+
+/* Extra small devices (portrait phones, iPhone SE, etc.) */
+@media (max-width: 480px) {
+    .carousel .list .item .content {
+        top: 22%;
+    }
+    
+    .carousel .list .item .content .title,
+    .carousel .list .item .content .topic {
+        font-size: 1.85rem;
+    }
+    
+    .carousel .list .item .content .des {
+        -webkit-line-clamp: 2; /* Truncate even more on extremely small screens */
+        margin-bottom: 1.25rem;
+    }
+
+    .carousel .thumbnail {
+        bottom: 30px;
+    }
+
+    .carousel .thumbnail .item {
+        width: 85px;
+        height: 125px;
+    }
+
+    .carousel .arrows {
+        top: 80%;
+    }
+}
+
+/* Landscape orientation adjustments for height-constrained mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+    .mobile-bottom-nav {
+        display: none; /* Hide bottom nav in small landscape to save space */
+    }
+
+    .main-header {
+        padding: 0.5rem 5%;
+    }
+
+    .carousel .list .item .content {
+        top: 15%;
+        text-align: left;
+    }
+
+    .carousel .list .item .content .title,
+    .carousel .list .item .content .topic {
+        font-size: 1.6rem;
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+
+    .carousel .list .item .content .des {
+        display: none; /* Hide description completely to avoid screen clutter */
+    }
+
+    .carousel .thumbnail {
+        bottom: 15px;
+        left: auto;
+        right: 5%;
+        width: auto;
+        height: auto;
+    }
+
+    .carousel .thumbnail .item {
+        width: 75px;
+        height: 105px;
+    }
+
+    .carousel .arrows {
+        top: 75%;
+        left: 5%;
+        width: auto;
+        justify-content: flex-start;
+    }
+}

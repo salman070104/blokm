@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | BLOK M Studio Printing</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Get in touch with BLOK M Studio Printing. Contact our team via WhatsApp at 087858231341 or visit our studio location in Jakarta for custom album consultations, invitation printing, and studio shoots.">
+    <meta name="keywords" content="contact blok m studio, address blok m printing, whatsapp studio print, google maps directions blok m">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* CSS Khusus Halaman Kontak (Premium Scrollable Layout) */
+        .kontak-page-body {
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Padding to prevent layout hidden under floating header */
+        .kontak-main-content {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Background Glow Layout */
+        .glow-overlay-kontak {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -150px;
+            right: -150px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-overlay-kontak-2 {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -200px;
+            left: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Header */
+        .kontak-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .kontak-tagline {
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .kontak-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .kontak-desc {
+            color: var(--color-text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Two-Column Grid */
+        .kontak-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: start;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Info Section (Left Column) */
+        .kontak-info-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2.2rem;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 2.2rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            transition: var(--transition-quick);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(var(--color-accent-rgb), 0.25);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 20px 40px rgba(var(--color-accent-rgb), 0.08);
+        }
+
+        .info-icon {
+            color: var(--color-accent);
+            flex-shrink: 0;
+            background: rgba(var(--color-accent-rgb), 0.06);
+            border: 1px solid rgba(var(--color-accent-rgb), 0.15);
+            padding: 0.8rem;
+            border-radius: 14px;
+            display: flex;
+        }
+
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .info-label {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+        }
+
+        .info-value {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--color-white);
+            line-height: 1.2;
+        }
+
+        .info-description {
+            color: var(--color-text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+            margin-top: 0.2rem;
+        }
+
+        /* Specific card styles for links */
+        .card-clickable {
+            cursor: pointer;
+        }
+        .card-clickable:hover .info-value {
+            color: var(--color-accent);
+        }
+
+        /* Form Section (Right Column) */
+        .kontak-form-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .form-title {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .form-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+        }
+
+        .consultation-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .form-input-label {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: var(--color-white);
+            padding: 1rem 1.2rem;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-quick);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--color-accent);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 0 15px rgba(var(--color-accent-rgb), 0.15);
+        }
+
+        .form-select option {
+            background: var(--color-bg-deep);
+            color: var(--color-white);
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit-btn {
+            background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.7) 100%);
+            border: none;
+            color: #000000;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 1.1rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            box-shadow: 0 5px 20px rgba(var(--color-accent-rgb), 0.25);
+            transition: var(--transition-quick);
+            margin-top: 1rem;
+        }
+
+        .form-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(var(--color-accent-rgb), 0.45);
+        }
+
+        /* Specific card styles for highlights */
+        .card-wa { --color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136; }
+        .card-maps { --color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255; }
+        .card-hours { --color-accent: var(--color-yellow); --color-accent-rgb: 255, 223, 0; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1000px) {
+            .kontak-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .kontak-title {
+                font-size: 2.3rem;
+            }
+            .kontak-main-content {
+                padding-top: 110px;
+            }
+            .kontak-form-card {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .kontak-title {
+                font-size: 2rem;
+            }
+            .info-value {
+                font-size: 1.15rem;
+            }
+            .info-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body class="kontak-page-body">
+
+    <!-- Mobile Sidebar Checkbox Toggle (Hidden) -->
+    <input type="checkbox" id="mobile-nav-toggle" class="mobile-nav-toggle" aria-hidden="true">
+
+    <!-- Mobile Sidebar Navigation Drawer -->
+    <div class="mobile-sidebar-nav">
+        <div class="sidebar-header">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="sidebar-logo">
+            <label for="mobile-nav-toggle" class="sidebar-close-btn" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </label>
+        </div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link">Home</a>
+            <a href="team.html" class="sidebar-link">Team</a>
+            <a href="paket.html" class="sidebar-link">Packages</a>
+            <a href="tentang.html" class="sidebar-link">About</a>
+            <a href="kontak.html" class="sidebar-link active">Contact</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20your%20packages." target="_blank" class="sidebar-cta-btn">CONTACT VIA WA</a>
+        </div>
+    </div>
+    
+    <!-- Sidebar Screen Overlay -->
+    <label for="mobile-nav-toggle" class="sidebar-overlay"></label>
+
+    <!-- Floating Navbar -->
+    <header class="main-header">
+        <div class="logo-area">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="logo-img">
+        </div>
+        
+        <div class="header-right">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="team.html" class="nav-link">Team</a></li>
+                    <li><a href="paket.html" class="nav-link">Packages</a></li>
+                    <li><a href="tentang.html" class="nav-link">About</a></li>
+                    <li><a href="kontak.html" class="nav-link active">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20your%20packages." target="_blank" class="cta-nav-btn">Contact WA</a>
+
+            <!-- Hamburger Button for Mobile -->
+            <label for="mobile-nav-toggle" class="hamburger-menu-btn" aria-label="Navigation Menu">
+                <span class="hamburger-bar bar-top"></span>
+                <span class="hamburger-bar bar-mid"></span>
+                <span class="hamburger-bar bar-bot"></span>
+            </label>
+        </div>
+    </header>
+
+    <!-- Background decorative glows -->
+    <div class="glow-overlay-kontak"></div>
+    <div class="glow-overlay-kontak-2"></div>
+
+    <!-- Main Container -->
+    <main class="kontak-main-content">
+        
+        <!-- Hero Header -->
+        <section class="kontak-hero">
+            <span class="kontak-tagline">CONTACT US</span>
+            <h1 class="kontak-title">GET IN TOUCH WITH BLOK M STUDIO</h1>
+            <p class="kontak-desc">
+                Ready to realize your high-quality prints and outstanding documentation? Contact our team instantly via WhatsApp, send a consultation inquiry, or visit our studio location.
+            </p>
+        </section>
+
+        <!-- Two Column Content -->
+        <div class="kontak-grid">
+            
+            <!-- Left Column: Info Cards -->
+            <section class="kontak-info-column">
+                
+                <!-- WhatsApp Info Card -->
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20consult%20about%20my%20order." target="_blank" class="info-card card-wa card-clickable">
+                    <div class="info-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label">Main WhatsApp</span>
+                        <span class="info-value">0878-5823-1341</span>
+                        <p class="info-description">Click to open the chat room directly. High-response customer support.</p>
+                    </div>
+                </a>
+
+                <!-- Google Maps Card -->
+                <a href="https://maps.app.goo.gl/jyGvkRwBWoYmsLYPA" target="_blank" class="info-card card-maps card-clickable">
+                    <div class="info-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label">Studio Location</span>
+                        <span class="info-value">Blok M Studio Printing</span>
+                        <p class="info-description">Click to view directions and travel routes directly on Google Maps.</p>
+                    </div>
+                </a>
+
+                <!-- Google Maps Embed Card -->
+                <div class="info-card card-maps" style="padding: 1.2rem; flex-direction: column; gap: 1rem;">
+                    <div style="display: flex; gap: 1.25rem; align-items: center; width: 100%; padding: 0.2rem 0.5rem 0 0.5rem;">
+                        <div class="info-icon" style="padding: 0.6rem; border-radius: 10px;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                        </div>
+                        <div class="info-content">
+                            <span class="info-label" style="font-size: 0.65rem; letter-spacing: 1.5px;">Interactive Map</span>
+                            <span class="info-value" style="font-size: 1.05rem;">Live Directions</span>
+                        </div>
+                    </div>
+                    <div class="map-iframe-wrapper" style="width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 10px 25px rgba(0,0,0,0.5); aspect-ratio: 16 / 10;">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.6720846660706!2d108.8228108!3d-6.9203043!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6fa79de1d20779%3A0x6415589ec2aaed25!2sBLOK-M%20Studio!5e0!3m2!1sid!2sid!4v1716719280000!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+
+                <!-- Jam Operasional Card -->
+                <div class="info-card card-hours">
+                    <div class="info-icon">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-label">Operating Hours</span>
+                        <span class="info-value">Online 24 Hours</span>
+                        <p class="info-description">Supported by our high-speed internal servers, you can consult with us at any hour.</p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Right Column: Consultation Form -->
+            <section class="kontak-form-card">
+                <h2 class="form-title">SEND INQUIRY</h2>
+                <p class="form-subtitle">Fill in the brief form below and send your inquiry details directly to our WhatsApp for an instant custom quote.</p>
+                
+                <form class="consultation-form" id="wa-consult-form">
+                    
+                    <div class="form-group">
+                        <label for="input-name" class="form-input-label">Full Name</label>
+                        <input type="text" id="input-name" class="form-input" placeholder="Enter your name..." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="select-service" class="form-input-label">Interested Service / Package</label>
+                        <select id="select-service" class="form-select" required>
+                            <option value="" disabled selected>Select Service...</option>
+                            <option value="Wedding Gold Package (1 Roll)">Wedding Gold Package (1 Roll)</option>
+                            <option value="Exclusive Prewedding Photo">Exclusive Prewedding Photo</option>
+                            <option value="Cinematic Video & Highlight">Cinematic Video & Highlight</option>
+                            <option value="Premium Studio Portrait">Premium Studio Portrait</option>
+                            <option value="School Yearbook Printing">School Yearbook Printing</option>
+                            <option value="Graduation & School Photo Package">Graduation & School Photo Package</option>
+                            <option value="Wedding Invitation Printing">Wedding Invitation Printing</option>
+                            <option value="Banner Design & Printing Services">Banner Design & Printing Services</option>
+                            <option value="Premium Photo Print Sizes">Premium Photo Print Sizes</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="input-desc" class="form-input-label">Description / Order Details</label>
+                        <textarea id="input-desc" class="form-textarea" placeholder="Write print specifications, order quantity, or your event date..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="form-submit-btn">
+                        SEND MESSAGE VIA WA
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                    </button>
+
+                </form>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- JavaScript for Form Submission compiling and redirecting to WA -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const consultForm = document.getElementById('wa-consult-form');
+            
+            consultForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const name = document.getElementById('input-name').value;
+                const service = document.getElementById('select-service').value;
+                const desc = document.getElementById('input-desc').value;
+                
+                // Construct WA text payload
+                const messageText = `Hello BLOK M Studio!\n\nI would like to consult about an order:\n\n*Name:* ${name}\n*Service:* ${service}\n*Order Details:* ${desc}\n\nPlease provide schedule availability and pricing details. Thank you!`;
+                
+                // Encode URL
+                const encodedText = encodeURIComponent(messageText);
+                
+                // Target WhatsApp link
+                const waUrl = `https://wa.me/6287858231341?text=${encodedText}`;
+                
+                // Redirect user to WA in a new tab
+                window.open(waUrl, '_blank');
+            });
+        });
+    </script>
+
+</body>
+</html>

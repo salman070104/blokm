@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | BLOK M Studio Printing</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Learn about BLOK M Studio Printing, our heritage in creative design, fine art printing, and professional photography. Driven by state-of-the-art technology and 24/7 operations.">
+    <meta name="keywords" content="about blok m studio, fine art printing company, high-speed print server, color calibration printing">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* CSS Khusus Halaman Tentang (Premium Scrollable Layout) */
+        .tentang-page-body {
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Padding to prevent layout hidden under floating header */
+        .tentang-main-content {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Background Glow Layout */
+        .glow-overlay-tentang {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 223, 0, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -150px;
+            left: -150px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-overlay-tentang-2 {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 255, 136, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -200px;
+            right: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Header */
+        .tentang-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .tentang-tagline {
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .tentang-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tentang-desc {
+            color: var(--color-text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* About Showcase Section */
+        .tentang-showcase-section {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            padding: 3.5rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Text Blocks */
+        .showcase-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .showcase-subtitle {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .showcase-text-block {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .showcase-text-block p {
+            margin-bottom: 1.2rem;
+        }
+
+        /* Pillars Section */
+        .pillars-section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .pillars-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .pillars-section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            color: var(--color-white);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Pillar Card Layout */
+        .pillar-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: var(--transition-quick);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .pillar-icon-wrapper {
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--color-accent-rgb), 0.06);
+            border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+            color: var(--color-accent);
+            font-size: 1.8rem;
+            transition: var(--transition-quick);
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(var(--color-accent-rgb), 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.08);
+        }
+
+        .pillar-card:hover .pillar-icon-wrapper {
+            background: var(--color-accent);
+            color: #000000;
+            transform: scale(1.05) rotate(5deg);
+            box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.35);
+        }
+
+        .pillar-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .pillar-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Specific card colors for accents */
+        .pillar-quality { --color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255; }
+        .pillar-reliability { --color-accent: var(--color-yellow); --color-accent-rgb: 255, 223, 0; }
+        .pillar-service { --color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1000px) {
+            .tentang-showcase-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                padding: 2.5rem;
+            }
+            .pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tentang-title {
+                font-size: 2.3rem;
+            }
+            .tentang-main-content {
+                padding-top: 110px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .tentang-title {
+                font-size: 2rem;
+            }
+            .showcase-subtitle {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="tentang-page-body">
+
+    <!-- Mobile Sidebar Checkbox Toggle (Hidden) -->
+    <input type="checkbox" id="mobile-nav-toggle" class="mobile-nav-toggle" aria-hidden="true">
+
+    <!-- Mobile Sidebar Navigation Drawer -->
+    <div class="mobile-sidebar-nav">
+        <div class="sidebar-header">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="sidebar-logo">
+            <label for="mobile-nav-toggle" class="sidebar-close-btn" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </label>
+        </div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link">Home</a>
+            <a href="team.html" class="sidebar-link">Team</a>
+            <a href="paket.html" class="sidebar-link">Packages</a>
+            <a href="tentang.html" class="sidebar-link active">About</a>
+            <a href="kontak.html" class="sidebar-link">Contact</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://wa.me/6287858231341" target="_blank" class="sidebar-cta-btn">CONTACT VIA WA</a>
+        </div>
+    </div>
+    
+    <!-- Sidebar Screen Overlay -->
+    <label for="mobile-nav-toggle" class="sidebar-overlay"></label>
+
+    <!-- Floating Navbar -->
+    <header class="main-header">
+        <div class="logo-area">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="logo-img">
+        </div>
+        
+        <div class="header-right">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="team.html" class="nav-link">Team</a></li>
+                    <li><a href="paket.html" class="nav-link">Packages</a></li>
+                    <li><a href="tentang.html" class="nav-link active">About</a></li>
+                    <li><a href="kontak.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/6287858231341" target="_blank" class="cta-nav-btn">Contact WA</a>
+
+            <!-- Hamburger Button for Mobile -->
+            <label for="mobile-nav-toggle" class="hamburger-menu-btn" aria-label="Navigation Menu">
+                <span class="hamburger-bar bar-top"></span>
+                <span class="hamburger-bar bar-mid"></span>
+                <span class="hamburger-bar bar-bot"></span>
+            </label>
+        </div>
+    </header>
+
+    <!-- Background decorative glows -->
+    <div class="glow-overlay-tentang"></div>
+    <div class="glow-overlay-tentang-2"></div>
+
+    <!-- Main Container -->
+    <main class="tentang-main-content">
+        
+        <!-- Hero Header -->
+        <section class="tentang-hero">
+            <span class="tentang-tagline">OUR STORY & VISION</span>
+            <h1 class="tentang-title">ABOUT BLOK M STUDIO</h1>
+            <p class="tentang-desc">
+                Dedicating our craftsmanship to premium printing and professional photography. We believe that every image is a masterpiece waiting to be preserved.
+            </p>
+        </section>
+
+        <!-- Showcase Section -->
+        <section class="tentang-showcase-section">
+            
+            <!-- Left Column: Story -->
+            <div class="showcase-column" style="--color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255;">
+                <h2 class="showcase-subtitle">CRAFTING IMMORTAL MEMORIES</h2>
+                <div class="showcase-text-block">
+                    <p>
+                        Founded in 2026, BLOK M Studio has grown from a local creative hub into a premium standard-setting printing and portrait studio. We bridge the gap between creative visual capture and state-of-the-art print technology.
+                    </p>
+                    <p>
+                        Our studio houses specialized digital color grading, premium lamination equipment, and hand-bound album crafting stations. Every yearbook, wedding book, and print size that leaves our lab represents a strict pursuit of visual perfection.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column: Tech & Infrastructure -->
+            <div class="showcase-column" style="--color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136;">
+                <h2 class="showcase-subtitle">24/7 ULTRA-SPEED CAPABILITIES</h2>
+                <div class="showcase-text-block">
+                    <p>
+                        Operating in the modern era requires modern reliability. Our studio is backed by a robust 24-hour backup power supply and a high-speed internal fiber-optic network (handling 1.5 Gbps bandwidth). This guarantees our processing workflow remains online and active around the clock.
+                    </p>
+                    <p>
+                        We calibrate our color profiles on the industry-standard German Heidelberg offset systems and premium anti-UV pigment inkjets. This ensures that the prints you receive today will stay as bright and sharp as they were decades from now.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Pillars Section -->
+        <section class="pillars-section">
+            <div class="pillars-header">
+                <h2 class="pillars-section-title">OUR PILLARS OF EXCELLENCE</h2>
+            </div>
+            
+            <div class="pillars-grid">
+                
+                <!-- Pillar 1 -->
+                <div class="pillar-card pillar-quality">
+                    <div class="pillar-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                    </div>
+                    <h3 class="pillar-title">Museum Quality</h3>
+                    <p class="pillar-desc">
+                        Curated premium textured papers like canvas, luster, matte, and linen, coupled with archival inks for exceptional longevity.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="pillar-card pillar-reliability">
+                    <div class="pillar-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+                    </div>
+                    <h3 class="pillar-title">High Reliability</h3>
+                    <p class="pillar-desc">
+                        Robust internal servers, dual-WAN fiber connectivity, and dedicated UPS systems secure and expedite your graphic data.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="pillar-card pillar-service">
+                    <div class="pillar-icon-wrapper">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h3 class="pillar-title">Service with Heart</h3>
+                    <p class="pillar-desc">
+                        Experienced professional photographers guiding natural poses, visualizers styling yearbooks, and managers hosting consultations.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

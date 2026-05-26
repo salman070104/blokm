@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team | BLOK M Studio Printing</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Meet the creative team behind BLOK M Studio Printing. Professional photographers, videographers, graphic designers, and print specialists ready to capture your precious moments.">
+    <meta name="keywords" content="blok m studio team, blok m printing crew, jakarta photographer, wedding videographer, print graphic designer">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* CSS Khusus Halaman Team (Premium Scrollable Layout) */
+        .team-page-body {
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Padding to prevent layout hidden under floating header */
+        .team-main-content {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Background Glow Layout */
+        .glow-overlay-team {
+            position: fixed;
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -150px;
+            left: -150px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-overlay-team-2 {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -200px;
+            right: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Header */
+        .team-hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .team-tagline {
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .team-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .team-desc {
+            color: var(--color-text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Main Crew Banner Showcase */
+        .crew-banner-section {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            padding: 3rem;
+            margin-bottom: 5rem;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Responsive Frame for crew.jpg */
+        .crew-image-frame {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            aspect-ratio: 16 / 10;
+            background: rgba(255, 255, 255, 0.02);
+            transition: var(--transition-quick);
+        }
+
+        .crew-image-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(7, 8, 12, 0.7) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .crew-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .crew-image-frame:hover {
+            transform: scale(1.02);
+            border-color: rgba(var(--color-accent-rgb), 0.3);
+            box-shadow: 0 20px 45px rgba(var(--color-accent-rgb), 0.15);
+        }
+
+        .crew-image-frame:hover .crew-image {
+            transform: scale(1.05);
+        }
+
+        /* Decorative Accent Badge over Crew Image */
+        .crew-img-badge {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(7, 8, 12, 0.75);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Crew Text Styling */
+        .crew-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .crew-subtitle {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--color-accent) 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .crew-text-block {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .crew-text-block p {
+            margin-bottom: 1rem;
+        }
+
+        .crew-signature {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 1.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .sig-name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-white);
+        }
+
+        .sig-role {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 0.1rem;
+        }
+
+        /* Team Roles Grid */
+        .roles-section {
+            margin-bottom: 5rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        .roles-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .roles-section-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            color: var(--color-white);
+        }
+
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Roles Card Layout */
+        .role-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            transition: var(--transition-quick);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .role-avatar-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(var(--color-accent-rgb), 0.08);
+            border: 1px solid rgba(var(--color-accent-rgb), 0.2);
+            color: var(--color-accent);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            transition: var(--transition-quick);
+            box-shadow: inset 0 0 15px rgba(var(--color-accent-rgb), 0.1);
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(var(--color-accent-rgb), 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 15px 30px rgba(var(--color-accent-rgb), 0.08);
+        }
+
+        .role-card:hover .role-avatar-wrapper {
+            background: var(--color-accent);
+            color: #000000;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(var(--color-accent-rgb), 0.4);
+        }
+
+        .role-name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--color-white);
+            margin-bottom: 0.4rem;
+        }
+
+        .role-title {
+            font-size: 0.75rem;
+            color: var(--color-accent);
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+
+        .role-bio {
+            color: var(--color-text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* Specific Accent Colors for Roles */
+        .role-photographer { --color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255; }
+        .role-videographer { --color-accent: var(--color-magenta); --color-accent-rgb: 255, 0, 127; }
+        .role-designer { --color-accent: var(--color-yellow); --color-accent-rgb: 255, 223, 0; }
+        .role-printer { --color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136; }
+
+        /* Creative Values Grid (3 Columns) */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 2rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+        }
+
+        .value-icon {
+            color: var(--color-accent);
+            flex-shrink: 0;
+            background: rgba(var(--color-accent-rgb), 0.06);
+            border: 1px solid rgba(var(--color-accent-rgb), 0.15);
+            padding: 0.6rem;
+            border-radius: 12px;
+            display: flex;
+        }
+
+        .value-title {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--color-white);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value-desc {
+            color: var(--color-text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1000px) {
+            .crew-banner-section {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 2rem;
+            }
+            .values-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-title {
+                font-size: 2.3rem;
+            }
+            .team-main-content {
+                padding-top: 110px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .team-title {
+                font-size: 2rem;
+            }
+            .roles-grid {
+                grid-template-columns: 1fr;
+            }
+            .crew-subtitle {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body class="team-page-body">
+
+    <!-- Mobile Sidebar Checkbox Toggle (Hidden) -->
+    <input type="checkbox" id="mobile-nav-toggle" class="mobile-nav-toggle" aria-hidden="true">
+
+    <!-- Mobile Sidebar Navigation Drawer -->
+    <div class="mobile-sidebar-nav">
+        <div class="sidebar-header">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="sidebar-logo">
+            <label for="mobile-nav-toggle" class="sidebar-close-btn" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </label>
+        </div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link">Home</a>
+            <a href="team.html" class="sidebar-link active">Team</a>
+            <a href="paket.html" class="sidebar-link">Packages</a>
+            <a href="tentang.html" class="sidebar-link">About</a>
+            <a href="kontak.html" class="sidebar-link">Contact</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20ask%20about%20your%20services." target="_blank" class="sidebar-cta-btn">CONTACT VIA WA</a>
+        </div>
+    </div>
+    
+    <!-- Sidebar Screen Overlay -->
+    <label for="mobile-nav-toggle" class="sidebar-overlay"></label>
+
+    <!-- Floating Navbar -->
+    <header class="main-header">
+        <div class="logo-area">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="logo-img">
+        </div>
+        
+        <div class="header-right">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="team.html" class="nav-link active">Team</a></li>
+                    <li><a href="paket.html" class="nav-link">Packages</a></li>
+                    <li><a href="tentang.html" class="nav-link">About</a></li>
+                    <li><a href="kontak.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20ask%20about%20your%20services." target="_blank" class="cta-nav-btn">Contact WA</a>
+
+            <!-- Hamburger Button for Mobile -->
+            <label for="mobile-nav-toggle" class="hamburger-menu-btn" aria-label="Navigation Menu">
+                <span class="hamburger-bar bar-top"></span>
+                <span class="hamburger-bar bar-mid"></span>
+                <span class="hamburger-bar bar-bot"></span>
+            </label>
+        </div>
+    </header>
+
+    <!-- Background decorative glows -->
+    <div class="glow-overlay-team"></div>
+    <div class="glow-overlay-team-2"></div>
+
+    <!-- Main Container -->
+    <main class="team-main-content">
+        
+        <!-- Hero Header -->
+        <section class="team-hero">
+            <span class="team-tagline">BEHIND EVERY BEAUTIFUL WORK</span>
+            <h1 class="team-title">CREATIVE & PROFESSIONAL CREW</h1>
+            <p class="team-desc">
+                Meet the amazing team dedicating their skills to photograph your life stories, edit every detail with care, and deliver masterpiece quality prints.
+            </p>
+        </section>
+
+        <!-- Main Crew Showcase Banner -->
+        <section class="crew-banner-section" style="--color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255;">
+            
+            <!-- Crew Image Container -->
+            <div class="crew-image-frame">
+                <!-- Checks for assets/crew.jpg, falls back to direct crew.jpg or elegant placeholder styling if not loaded -->
+                <img src="assets/crew.jpg" alt="BLOK M Studio Creative Crew" class="crew-image" onerror="this.onerror=null; this.src='crew.jpg';">
+                <span class="crew-img-badge">BLOK M Creative Team</span>
+            </div>
+
+            <!-- Crew Text Inclusions -->
+            <div class="crew-info">
+                <h2 class="crew-subtitle">ONE VISION, A MILLION STORIES</h2>
+                <div class="crew-text-block">
+                    <p>
+                        At BLOK M Studio Printing, we believe that every camera shutter and stroke of ink is an everlasting work of art. Our team is not just a collection of creative workers, but highly dedicated visual storytellers.
+                    </p>
+                    <p>
+                        From pose direction in our comfortable air-conditioned photo studio, accurate image color grading, to the handmade assembly of custom collage photo albums, we preserve the highest standards of quality at every stage.
+                    </p>
+                    <p>
+                        Supported by our robust 24-hour technology infrastructure and a strong spirit of togetherness, we are always ready to welcome you in realizing your dream graduation albums, preweddings, and school yearbooks.
+                    </p>
+                </div>
+                <div class="crew-signature">
+                    <div class="sig-name">BLOK M CREATIVE TEAM</div>
+                    <div class="sig-role">Est. 2026 - Jakarta, Indonesia</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Roles Section -->
+        <section class="roles-section">
+            <div class="roles-header">
+                <h2 class="roles-section-title">OUR CREATIVE PILLARS</h2>
+            </div>
+            
+            <div class="roles-grid">
+                
+                <!-- Role 1: Photographer -->
+                <div class="role-card role-photographer">
+                    <div class="role-avatar-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+                    </div>
+                    <div>
+                        <h3 class="role-name">Lead Photographer</h3>
+                        <p class="role-title">Photography & Composition</p>
+                        <p class="role-bio">
+                            Expert in capturing natural emotions, relaxed pose guidance, and mastering cinematic studio lighting techniques.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Role 2: Videographer -->
+                <div class="role-card role-videographer">
+                    <div class="role-avatar-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7a2 2 0 0 0-2.45-1.45L16 7V5a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2l4.55 1.45A2 2 0 0 0 23 17V7z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="role-name">Cinematographer</h3>
+                        <p class="role-title">Video & Storytelling</p>
+                        <p class="role-bio">
+                            Specialist in dynamic camera movements (gimbal) and editing cinematic videos that touch the hearts of viewers.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Role 3: Graphic Designer -->
+                <div class="role-card role-designer">
+                    <div class="role-avatar-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"></path><path d="M12 16C14.2091 16 16 14.2091 16 12C16 9.79086 14.2091 8 12 8C9.79086 8 7 9.79086 7 12C7 14.2091 9.79086 16 12 16Z"></path></svg>
+                    </div>
+                    <div>
+                        <h3 class="role-name">Senior Designer</h3>
+                        <p class="role-title">Creative & Layout</p>
+                        <p class="role-bio">
+                            Designing unique custom school yearbook layouts, premium covers, and exclusive invitations.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Role 4: Print Specialist -->
+                <div class="role-card role-printer">
+                    <div class="role-avatar-wrapper">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    </div>
+                    <div>
+                        <h3 class="role-name">Print Specialist</h3>
+                        <p class="role-title">Color & Finishing</p>
+                        <p class="role-bio">
+                            Guaranteeing the color calibration accuracy of pigment printers, supervising laminations, and crafting custom collage albums.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Core Values Section (Bottom) -->
+        <section class="roles-section">
+            <div class="roles-header">
+                <h2 class="roles-section-title">OUR CORE TEAMWORK VALUES</h2>
+            </div>
+            
+            <div class="values-grid">
+                
+                <!-- Value 1 -->
+                <div class="value-card" style="--color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255;">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h4 class="value-title">Detail & Precision</h4>
+                        <p class="value-desc">Every color resolution, photo crop edge, and album arrangement is double-checked for print perfection.</p>
+                    </div>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="value-card" style="--color-accent: var(--color-magenta); --color-accent-rgb: 255, 0, 127;">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                    </div>
+                    <div>
+                        <h4 class="value-title">24-Hour Consistency</h4>
+                        <p class="value-desc">Supported by our internal power supply and high-speed servers, our workflow remains consistently stable at any hour.</p>
+                    </div>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="value-card" style="--color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136;">
+                    <div class="value-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <div>
+                        <h4 class="value-title">Service with Heart</h4>
+                        <p class="value-desc">Your satisfaction is our everything. We guide poses and recommend paper types with our whole heart.</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Packages List | BLOK M Studio Printing</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Complete pricing package list for wedding photos, studio portraiture, cinematic videos, preweddings, school yearbooks, premium photo prints 2x3 to 24R, custom invitation prints, and banner designs. Transparent premium prices.">
+    <meta name="keywords" content="photo prints blok m, graduation portraits, wedding packages, prewedding photography, cinematic video, wedding invitations, banner prints, school yearbook">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS Link -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        /* CSS Khusus Halaman Paket (Premium Scrollable Layout) */
+        .paket-page-body {
+            background-color: var(--color-bg-deep);
+            color: var(--color-text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            overflow-y: auto;
+            height: auto;
+            width: 100vw;
+            position: relative;
+        }
+
+        /* Padding to prevent layout hidden under floating header */
+        .paket-main-content {
+            padding-top: 130px;
+            padding-bottom: 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 90%;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Background Glow Layout */
+        .glow-overlay {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(var(--color-accent-rgb), 0.08) 0%, rgba(0, 0, 0, 0) 70%);
+            top: -200px;
+            right: -200px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glow-overlay-2 {
+            position: fixed;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 0, 127, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
+            bottom: -300px;
+            left: -300px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Hero Header */
+        .paket-hero {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .paket-tagline {
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: var(--color-accent);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .paket-title {
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: 3rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(135deg, #ffffff 40%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .paket-desc {
+            color: var(--color-text-secondary);
+            font-size: 1.05rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Category Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 3.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: var(--color-text-secondary);
+            padding: 0.8rem 1.6rem;
+            border-radius: 30px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition-quick);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .filter-btn:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.7) 100%);
+            color: #000000;
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(var(--color-accent-rgb), 0.3);
+        }
+
+        /* Pricing Card Grid */
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 5rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        /* Premium Glassmorphic Card */
+        .package-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2.2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-quick);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+
+        .package-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+            opacity: 0;
+            transition: var(--transition-quick);
+        }
+
+        /* Card Hover States */
+        .package-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(var(--color-accent-rgb), 0.25);
+            box-shadow: 0 20px 40px rgba(var(--color-accent-rgb), 0.1);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .package-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Badge Custom */
+        .card-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(var(--color-accent-rgb), 0.15);
+            border: 1px solid rgba(var(--color-accent-rgb), 0.3);
+            color: var(--color-accent);
+            padding: 0.35rem 0.8rem;
+            border-radius: 12px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .card-category {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-text-muted);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .card-title {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .card-price-container {
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding-bottom: 1.5rem;
+        }
+
+        .card-price-label {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        .card-price {
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--color-white);
+        }
+
+        .card-price span {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            flex-grow: 1;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.4;
+        }
+
+        .feature-icon {
+            color: var(--color-accent);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .feature-item.bonus {
+            color: var(--color-white);
+            font-weight: 500;
+        }
+
+        .feature-item.bonus .feature-icon {
+            color: var(--color-green);
+        }
+
+        .card-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-white);
+            padding: 1rem 0;
+            border-radius: 12px;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: var(--transition-quick);
+            cursor: pointer;
+        }
+
+        .card-btn:hover {
+            background: var(--color-white);
+            color: #000000;
+            border-color: var(--color-white);
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom Accent Colors for specific category highlights */
+        .wedding-card { --color-accent: var(--color-cyan); --color-accent-rgb: 0, 240, 255; }
+        .studio-card { --color-accent: var(--color-magenta); --color-accent-rgb: 255, 0, 127; }
+        .yearbook-card { --color-accent: var(--color-yellow); --color-accent-rgb: 255, 223, 0; }
+        .print-card { --color-accent: var(--color-green); --color-accent-rgb: 0, 255, 136; }
+
+        /* Photo Printing Grid & Table Section */
+        .print-section {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-header-inside {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 1.5rem;
+        }
+
+        .section-title-inside {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--color-green) 0%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-badge-inside {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            color: var(--color-green);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Glassmorphic Print Table */
+        .print-table-wrapper {
+            overflow-x: auto;
+            width: 100%;
+        }
+
+        .print-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        .print-table th {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .print-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--color-text-secondary);
+            transition: var(--transition-quick);
+        }
+
+        .print-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .print-table tr:hover td {
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--color-white);
+        }
+
+        .size-highlight {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            color: var(--color-white);
+            font-size: 1.1rem;
+        }
+
+        .price-highlight {
+            font-weight: 700;
+            color: var(--color-green);
+        }
+
+        .paper-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-text-secondary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .finish-badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            color: var(--color-cyan);
+        }
+
+        /* Note Section below table */
+        .print-note {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            background: rgba(0, 240, 255, 0.03);
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.2rem 1.5rem;
+            color: var(--color-text-secondary);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .print-note-icon {
+            color: var(--color-cyan);
+            flex-shrink: 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .paket-hero {
+                margin-top: 20px;
+            }
+            .paket-title {
+                font-size: 2.3rem;
+            }
+            .paket-main-content {
+                padding-top: 110px;
+            }
+            .print-section {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+            .paket-title {
+                font-size: 2rem;
+            }
+            .filter-btn {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.75rem;
+            }
+            .print-table th, .print-table td {
+                padding: 1rem 0.75rem;
+                font-size: 0.85rem;
+            }
+            .size-highlight {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body class="paket-page-body">
+
+    <!-- Mobile Sidebar Checkbox Toggle (Hidden) -->
+    <input type="checkbox" id="mobile-nav-toggle" class="mobile-nav-toggle" aria-hidden="true">
+
+    <!-- Mobile Sidebar Navigation Drawer -->
+    <div class="mobile-sidebar-nav">
+        <div class="sidebar-header">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="sidebar-logo">
+            <label for="mobile-nav-toggle" class="sidebar-close-btn" aria-label="Close Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </label>
+        </div>
+        <nav class="sidebar-links">
+            <a href="index.html" class="sidebar-link">Home</a>
+            <a href="team.html" class="sidebar-link">Team</a>
+            <a href="paket.html" class="sidebar-link active">Packages</a>
+            <a href="tentang.html" class="sidebar-link">About</a>
+            <a href="kontak.html" class="sidebar-link">Contact</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20your%20packages." target="_blank" class="sidebar-cta-btn">CONTACT VIA WA</a>
+        </div>
+    </div>
+    
+    <!-- Sidebar Screen Overlay -->
+    <label for="mobile-nav-toggle" class="sidebar-overlay"></label>
+
+    <!-- Floating Navbar -->
+    <header class="main-header">
+        <div class="logo-area">
+            <img src="assets/logo-white.png" alt="BLOK M Studio Logo" class="logo-img">
+        </div>
+        
+        <div class="header-right">
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="team.html" class="nav-link">Team</a></li>
+                    <li><a href="paket.html" class="nav-link active">Packages</a></li>
+                    <li><a href="tentang.html" class="nav-link">About</a></li>
+                    <li><a href="kontak.html" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20your%20packages." target="_blank" class="cta-nav-btn">Contact WA</a>
+
+            <!-- Hamburger Button for Mobile -->
+            <label for="mobile-nav-toggle" class="hamburger-menu-btn" aria-label="Navigation Menu">
+                <span class="hamburger-bar bar-top"></span>
+                <span class="hamburger-bar bar-mid"></span>
+                <span class="hamburger-bar bar-bot"></span>
+            </label>
+        </div>
+    </header>
+
+    <!-- Background decorative glows -->
+    <div class="glow-overlay"></div>
+    <div class="glow-overlay-2"></div>
+
+    <!-- Main Container -->
+    <main class="paket-main-content">
+        
+        <!-- Hero Header -->
+        <section class="paket-hero">
+            <span class="paket-tagline">TRANSPARENT & PREMIUM PRICING</span>
+            <h1 class="paket-title">OUR BEST PACKAGES</h1>
+            <p class="paket-desc">
+                Choose from a wide selection of high-quality documentation and printing packages by BLOK M Studio. We deliver sharp details, precise colors, and professional services for your every precious moment.
+            </p>
+        </section>
+
+        <!-- Category Filter Tabs -->
+        <section class="filter-tabs">
+            <button class="filter-btn active" data-filter="all">All Packages</button>
+            <button class="filter-btn" data-filter="wedding">Wedding & Prewed</button>
+            <button class="filter-btn" data-filter="studio">Studio & Video</button>
+            <button class="filter-btn" data-filter="sekolah">School & Album</button>
+            <button class="filter-btn" data-filter="desain">Design & Custom</button>
+        </section>
+
+        <!-- Pricing Card Grid -->
+        <section class="packages-grid">
+            
+            <!-- Wedding 1 Roll -->
+            <article class="package-card wedding-card" data-category="wedding">
+                <div>
+                    <span class="card-badge">Popular</span>
+                    <span class="card-category">Wedding</span>
+                    <h2 class="card-title">Wedding Gold Package (1 Roll)</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 2,499,000 <span>/ Event</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Full-day Photo Coverage (Ceremony + Reception)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <strong>Print 1 Roll Collage / Foldable Album</strong> (20 Pages, Exclusive Quality)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium Flash Drive with edited & all master files
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: 16R Photo Print + Minimalist Black/White Frame
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: 1-Minute Cinematic Video Teaser
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20the%20Wedding%20Gold%20Package." target="_blank" class="card-btn">Book Package</a>
+            </article>
+
+            <!-- Foto Prewedding -->
+            <article class="package-card wedding-card" data-category="wedding">
+                <div>
+                    <span class="card-category">Prewedding</span>
+                    <h2 class="card-title">Exclusive Prewedding Photo</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 1,499,000 <span>/ Session</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            4-Hour Photoshoot Session (Outdoor Location/Indoor Studio)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Basic Makeup Artist (MUA) & Photographer Pose Direction
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            30 High-Resolution Edited Photo Files
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: 20R Photo Print + Minimalist Frame with Glass
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Raw/Master Files on Google Drive
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20the%20Exclusive%20Prewedding%20Photo." target="_blank" class="card-btn">Book Package</a>
+            </article>
+
+            <!-- Video Cinematic -->
+            <article class="package-card studio-card" data-category="studio">
+                <div>
+                    <span class="card-category">Videography</span>
+                    <h2 class="card-title">Cinematic Video & Highlight</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 1,799,000 <span>/ Event</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            1 Professional Videographer with Camera Stabilizer (Gimbal)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            3-5 Minute Cinematic Video Highlight (Full HD 1080p)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Officially Licensed Audio Backsound Options
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: 1-Minute Video Teaser for Reels/TikTok
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Fast File Delivery via Google Drive (Max. 7 Working Days)
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20the%20Cinematic%20Video%20Highlight." target="_blank" class="card-btn">Book Package</a>
+            </article>
+
+            <!-- Foto Studio -->
+            <article class="package-card studio-card" data-category="studio">
+                <div>
+                    <span class="card-category">Studio</span>
+                    <h2 class="card-title">Premium Studio Portrait</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 249,000 <span>/ Session</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            30-Minute Photoshoot Session in Air-Conditioned Studio (Max. 5 People)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Background Options (Solid Colors / Minimalist Themes)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            5 Best Edited Photo Files of your choice
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: 4R Size Photo Prints (4 Sheets)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            All Original/Master Photo Files delivered digitally
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20book%20a%20Premium%20Studio%20Session." target="_blank" class="card-btn">Book Studio</a>
+            </article>
+
+            <!-- Buku Tahunan / Yearbook -->
+            <article class="package-card yearbook-card" data-category="sekolah">
+                <div>
+                    <span class="card-badge">Best Seller</span>
+                    <span class="card-category">Yearbook</span>
+                    <h2 class="card-title">School Yearbook Printing</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 185,000 <span>/ Student</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Minimum Order of 40 Pcs / Students
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium Hard Cover + Ultra-Strong Thread Sewing Binding
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            150gr Art Paper (Matte/Glossy Lamination Finishing)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Includes Class Photoshoot Session at School / Outdoor
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: Custom Layout Design & PDF E-Book File
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20inquire%20about%20School%20Yearbook%20Printing." target="_blank" class="card-btn">Consult Design</a>
+            </article>
+
+            <!-- Foto Sekolah -->
+            <article class="package-card yearbook-card" data-category="sekolah">
+                <div>
+                    <span class="card-category">School</span>
+                    <h2 class="card-title">Graduation & School Photo Package</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 95,000 <span>/ Student</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Individual Photo wearing Graduation Gown / School Uniform
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            One Group Photo with Class / Cohort
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium 10R Photo Print (Water-Resistant Thick Photo Paper)
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: Exclusive Graduation Map Folder with School Logo
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            High-Resolution Master JPG Files on Google Drive
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20the%20School%20Graduation%20Photo%20Package." target="_blank" class="card-btn">Book Package</a>
+            </article>
+
+            <!-- Cetak Undangan -->
+            <article class="package-card desain-card" data-category="desain">
+                <div>
+                    <span class="card-category">Invitations</span>
+                    <h2 class="card-title">Wedding Invitation Printing</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 2,500 <span>/ Pcs</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Minimum Order 300 Pcs (Various custom designs available)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium Thick Material (Art Carton 260gr / Brief Card / Custom Akasia)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Sharp Offset Printing with German Heidelberg Press
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: OPP Plastic Sleeve, Thank You Cards, Name Labels
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            BONUS: Digital E-Invitation Website Link
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'm%20interested%20in%20Wedding%20Invitation%20Printing." target="_blank" class="card-btn">Select Model</a>
+            </article>
+
+            <!-- Desain Banner -->
+            <article class="package-card desain-card" data-category="desain">
+                <div>
+                    <span class="card-category">Design & Print</span>
+                    <h2 class="card-title">Banner Design & Printing Services</h2>
+                    <div class="card-price-container">
+                        <span class="card-price-label">Starting From</span>
+                        <div class="card-price">Rp 35,000 <span>/ M²</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Fast Printing of Banners / Billboards / Spanduk in various sizes
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Premium Thick 340gr Flexi Material (Water & Sun-Resistant)
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Includes Professional Graphic Design Services upon request
+                        </li>
+                        <li class="feature-item">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Finishing Options: Eyelets (Grommets), Wood Pocket, No Fold
+                        </li>
+                        <li class="feature-item bonus">
+                            <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            Sharp Color Guarantee & No Pixelation
+                        </li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20I'd%20like%20to%20order%20a%20Banner%20%2F%20Spanduk." target="_blank" class="card-btn">Order Banner</a>
+            </article>
+
+        </section>
+
+        <!-- Premium Photo Printing List Table -->
+        <section class="print-section">
+            <div class="section-header-inside">
+                <h2 class="section-title-inside">Photo Print Price List</h2>
+                <span class="section-badge-inside">Premium Silky/Matte/Glossy Paper</span>
+            </div>
+            
+            <div class="print-table-wrapper">
+                <table class="print-table">
+                    <thead>
+                        <tr>
+                            <th>Size</th>
+                            <th>Dimensions (cm)</th>
+                            <th>Paper & Quality</th>
+                            <th>Price per Sheet</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="size-highlight">ID Photo Package</span></td>
+                            <td>2x3, 3x4, 4x6</td>
+                            <td>Premium Photo Paper Matte</td>
+                            <td><span class="price-highlight">Rp 15,000</span></td>
+                            <td><span class="paper-badge">Contains 8 Sheets</span> (Pre-cut)</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">4R</span></td>
+                            <td>10 x 15 cm</td>
+                            <td>High-Gloss Premium</td>
+                            <td><span class="price-highlight">Rp 5.000</span></td>
+                            <td>Ideal for standard photo albums</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">10R</span></td>
+                            <td>25 x 30 cm</td>
+                            <td>Matte / Luster (Pebble Texture)</td>
+                            <td><span class="price-highlight">Rp 25.000</span></td>
+                            <td>Perfect for small desk frames</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">12R</span></td>
+                            <td>30 x 40 cm</td>
+                            <td>Professional Luster Paper</td>
+                            <td><span class="price-highlight">Rp 45.000</span></td>
+                            <td><span class="paper-badge finish-badge">Best Seller</span> Fade-resistant for decades</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">16R</span></td>
+                            <td>40 x 50 cm</td>
+                            <td>Laminated Matte Canvas</td>
+                            <td><span class="price-highlight">Rp 75.000</span></td>
+                            <td>Family photo / medium wall display</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">20R</span></td>
+                            <td>50 x 60 cm</td>
+                            <td>Water-Resistant Heavy Canvas Satin</td>
+                            <td><span class="price-highlight">Rp 120.000</span></td>
+                            <td>Highly recommended for Prewedding Photos</td>
+                        </tr>
+                        <tr>
+                            <td><span class="size-highlight">24R</span></td>
+                            <td>60 x 80 cm</td>
+                            <td>Premium Art Board & MDF Lamination</td>
+                            <td><span class="price-highlight">Rp 180.000</span></td>
+                            <td>Exclusive jumbo size for main living rooms</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Note Info -->
+            <div class="print-note">
+                <svg class="print-note-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <p>
+                    <strong>Printing Note:</strong> All prints use premium anti-UV pigment inks, ensuring colors remain brilliant for decades. For sizes 16R and above, we highly recommend the optional Matte/Glossy lamination to protect the photo surface from fingerprints and dust. Contact us for bulk orders to get special reseller discounts.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Filter JS Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const packageCards = document.querySelectorAll('.package-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+
+                    const filterValue = button.getAttribute('data-filter');
+
+                    packageCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'flex';
+                            
+                            // Smooth animation when cards reappear
+                            card.animate([
+                                { opacity: 0, transform: 'translateY(15px) scale(0.98)' },
+                                { opacity: 1, transform: 'translateY(0) scale(1)' }
+                            ], {
+                                duration: 450,
+                                easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+                            });
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
