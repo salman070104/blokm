@@ -195,6 +195,11 @@ body {
     position: absolute;
     inset: 0 0 0 0;
     transition: filter 0.8s ease;
+    /* Hardware GPU Acceleration Hints */
+    will-change: transform, opacity, top, left, width, height;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Backdrop gradient for text legibility */
@@ -216,6 +221,9 @@ body {
     z-index: 10;
     color: var(--color-white);
     text-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    /* Hardware GPU Acceleration Hints */
+    will-change: transform, opacity;
+    transform: translate3d(0, 0, 0);
 }
 
 .carousel .list .item .content .author {
@@ -389,6 +397,11 @@ body {
     cursor: pointer;
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Hardware GPU Acceleration Hints */
+    will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .carousel .thumbnail .item img {
