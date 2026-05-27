@@ -217,3 +217,22 @@ document.addEventListener("DOMContentLoaded", () => {
     setupThumbnailClicks();
     startAutoplay();
 });
+
+/* ==========================================================================
+   NAVBAR SCROLL BACKGROUND
+   ========================================================================== */
+(function () {
+    const header = document.querySelector('.main-header');
+    if (!header) return;
+
+    function onScroll() {
+        if (window.scrollY > 60) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load in case page is already scrolled
+})();
