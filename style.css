@@ -1100,3 +1100,90 @@ body {
         justify-content: flex-start;
     }
 }
+
+/* ==========================================================================
+   FLOATING SOCIAL BUTTONS BAR (GLASSMORPHISM)
+   ========================================================================== */
+.floating-socials {
+    position: fixed;
+    bottom: 25px;
+    left: 5%;
+    display: flex;
+    gap: 12px;
+    z-index: 2500; /* Higher than arrows, lower than mobile nav */
+    align-items: center;
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Brand Hover States */
+.social-btn:hover {
+    transform: translateY(-5px) scale(1.08);
+    color: var(--color-white);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.social-btn.fb:hover {
+    background: #1877F2;
+    border-color: #1877F2;
+    box-shadow: 0 10px 25px rgba(24, 119, 242, 0.45);
+}
+
+.social-btn.ig:hover {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    border-color: #e6683c;
+    box-shadow: 0 10px 25px rgba(220, 39, 67, 0.45);
+}
+
+.social-btn.yt:hover {
+    background: #FF0000;
+    border-color: #FF0000;
+    box-shadow: 0 10px 25px rgba(255, 0, 0, 0.45);
+}
+
+.social-btn.wa:hover {
+    background: #25D366;
+    border-color: #25D366;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.45);
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s ease;
+}
+
+.social-btn:hover svg {
+    transform: scale(1.1);
+}
+
+/* Adjust position on small mobile devices to avoid overlap */
+@media (max-width: 768px) {
+    .floating-socials {
+        bottom: 20px;
+        left: 20px;
+        gap: 10px;
+    }
+    .social-btn {
+        width: 38px;
+        height: 38px;
+    }
+    .social-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+}
