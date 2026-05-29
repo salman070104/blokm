@@ -924,51 +924,52 @@ body {
 
     /* Content Area Auto Scaling */
     .carousel .list .item .content {
-        top: 25%;
-        left: 5%;
-        width: 90%;
-        text-align: center;
+        top: auto !important;
+        bottom: 210px !important;
+        left: 5% !important;
+        width: 90% !important;
+        text-align: left !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
     }
     
     .carousel .list .item .content .author {
         font-size: 0.75rem;
         letter-spacing: 3px;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.3rem;
     }
     
     .carousel .list .item .content .title,
     .carousel .list .item .content .topic {
-        font-size: clamp(2rem, 8vw, 3.5rem);
+        font-size: clamp(1.8rem, 7vw, 2.5rem) !important;
+        line-height: 1.1 !important;
     }
     
     .carousel .list .item .content .des {
-        max-width: 100%;
-        font-size: clamp(0.85rem, 3.5vw, 0.95rem);
-        margin-bottom: 1.5rem;
-        line-height: 1.5;
-        /* Truncate text on very small heights to avoid overlap */
-        display: -webkit-box;
-        -webkit-line-clamp: 3;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
+        display: none !important; /* Hide description on mobile to prevent blocking */
     }
     
     .carousel .list .item .content .buttons {
-        justify-content: center;
-        flex-direction: row;
-        width: 100%;
-        gap: 0.75rem;
+        justify-content: flex-start !important;
+        flex-direction: row !important;
+        width: 100% !important;
+        gap: 0.6rem !important;
+        margin-top: 0.8rem !important;
     }
     
     .carousel .list .item .content .primary-btn,
     .carousel .list .item .content .secondary-btn {
-        width: auto;
-        flex: 1;
-        max-width: 200px;
-        padding: 0.9rem 1.25rem;
-        font-size: 0.75rem;
-        letter-spacing: 1px;
-        justify-content: center;
+        width: auto !important;
+        flex: none !important;
+        padding: 0.6rem 1rem !important;
+        font-size: 0.7rem !important;
+        letter-spacing: 0.5px !important;
+        border-radius: 20px !important;
+        height: auto !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
     }
     
     /* Thumbnail Grid Positioning */
@@ -1027,17 +1028,13 @@ body {
 /* Extra small devices (portrait phones, iPhone SE, etc.) */
 @media (max-width: 480px) {
     .carousel .list .item .content {
-        top: 22%;
+        top: auto !important;
+        bottom: 190px !important;
     }
     
     .carousel .list .item .content .title,
     .carousel .list .item .content .topic {
-        font-size: 1.85rem;
-    }
-    
-    .carousel .list .item .content .des {
-        -webkit-line-clamp: 2; /* Truncate even more on extremely small screens */
-        margin-bottom: 1.25rem;
+        font-size: 1.6rem !important;
     }
 
     .carousel .thumbnail {
