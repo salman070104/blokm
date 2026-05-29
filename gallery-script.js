@@ -58,34 +58,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const galleryTexts = {
         studio: {
-            subtitle: "BLOK M PORTRAITS",
-            title: "STUDIO PORTRAIT ALBUMS",
-            desc: "Showcasing professional studio portrait portfolios with premium lighting techniques. Ranging from individual photoshoots, professional corporate profiles, to warm moments with your beloved family."
+            subtitle: '<span lang="id">POTRET BLOK M</span><span lang="en">BLOK M PORTRAITS</span>',
+            title: '<span lang="id">ALBUM POTRET STUDIO</span><span lang="en">STUDIO PORTRAIT ALBUMS</span>',
+            desc: '<span lang="id">Menampilkan portofolio potret studio profesional dengan teknik pencahayaan premium. Mulai dari pemotretan individu, profil perusahaan, hingga momen hangat bersama keluarga tercinta.</span><span lang="en">Showcasing professional studio portrait portfolios with premium lighting techniques. Ranging from individual photoshoots, professional corporate profiles, to warm moments with your beloved family.</span>',
+            docTitle: 'Studio Portrait Albums'
         },
         wedding: {
-            subtitle: "BLOK M WEDDING",
-            title: "WEDDING ALBUMS",
-            desc: "Documentation of the most historical moments in your life. This page displays samples of exclusive premium laminated wedding photo albums presented in luxurious boxes."
+            subtitle: '<span lang="id">PERNIKAHAN BLOK M</span><span lang="en">BLOK M WEDDING</span>',
+            title: '<span lang="id">ALBUM PERNIKAHAN</span><span lang="en">WEDDING ALBUMS</span>',
+            desc: '<span lang="id">Dokumentasi momen paling bersejarah dalam hidup Anda. Halaman ini menampilkan sampel album foto pernikahan laminasi premium eksklusif yang disajikan dalam kotak mewah.</span><span lang="en">Documentation of the most historical moments in your life. This page displays samples of exclusive premium laminated wedding photo albums presented in luxurious boxes.</span>',
+            docTitle: 'Wedding Albums'
         },
         prewed: {
-            subtitle: "BLOK M STORIES",
-            title: "PREWEDDING ALBUMS",
-            desc: "Your romantic love stories captured visually and artistically. Prewedding photo book printing with selected thick textured paper yields sharp details of your loving memories."
+            subtitle: '<span lang="id">CERITA BLOK M</span><span lang="en">BLOK M STORIES</span>',
+            title: '<span lang="id">ALBUM PREWEDDING</span><span lang="en">PREWEDDING ALBUMS</span>',
+            desc: '<span lang="id">Kisah cinta romantis Anda ditangkap secara visual dan artistik. Pencetakan buku foto prewedding dengan kertas bertekstur tebal pilihan menghasilkan detail tajam dari kenangan indah Anda.</span><span lang="en">Your romantic love stories captured visually and artistically. Prewedding photo book printing with selected thick textured paper yields sharp details of your loving memories.</span>',
+            docTitle: 'Prewedding Albums'
         },
         school: {
-            subtitle: "YEARBOOK MEMORIES",
-            title: "SCHOOL YEARBOOKS",
-            desc: "A collection of laughter and friendships from school days. High-quality creative yearbook printing with exclusive spot-UV finishing so your school memories never fade."
+            subtitle: '<span lang="id">KENANGAN BUKU TAHUNAN</span><span lang="en">YEARBOOK MEMORIES</span>',
+            title: '<span lang="id">BUKU TAHUNAN SEKOLAH</span><span lang="en">SCHOOL YEARBOOKS</span>',
+            desc: '<span lang="id">Kumpulan tawa dan persahabatan dari masa sekolah. Pencetakan buku tahunan kreatif berkualitas tinggi dengan finishing spot-UV eksklusif agar kenangan sekolah Anda tidak pernah pudar.</span><span lang="en">A collection of laughter and friendships from school days. High-quality creative yearbook printing with exclusive spot-UV finishing so your school memories never fade.</span>',
+            docTitle: 'School Yearbooks'
         },
         graduation: {
-            subtitle: "CINEMATIC GRADUATION",
-            title: "CINEMATIC GRADUATION VIDEOS",
-            desc: "Document your historic graduation moments in a premium cinematic video. Documentary style options with exclusive interviews, aerial drone visuals, and top-tier color grading for the most beautiful graduation memories."
+            subtitle: '<span lang="id">KELULUSAN SINEMATIK</span><span lang="en">CINEMATIC GRADUATION</span>',
+            title: '<span lang="id">VIDEO KELULUSAN SINEMATIK</span><span lang="en">CINEMATIC GRADUATION VIDEOS</span>',
+            desc: '<span lang="id">Dokumentasikan momen kelulusan bersejarah Anda dalam video sinematik premium. Pilihan gaya dokumenter dengan wawancara eksklusif, visual drone udara, dan gradasi warna tingkat atas untuk kenangan kelulusan terindah.</span><span lang="en">Document your historic graduation moments in a premium cinematic video. Documentary style options with exclusive interviews, aerial drone visuals, and top-tier color grading for the most beautiful graduation memories.</span>',
+            docTitle: 'Cinematic Graduation Videos'
         },
         print: {
-            subtitle: "FINE ART PRINTS",
-            title: "PHOTO PRINTING SERVICES",
-            desc: "A gallery of museum-quality fine art photo print samples. We use premium curated papers (canvas, luster, matte, linen) and state-of-the-art printing technologies for unmatched color sharpness."
+            subtitle: '<span lang="id">CETAKAN FINE ART</span><span lang="en">FINE ART PRINTS</span>',
+            title: '<span lang="id">LAYANAN CETAK FOTO</span><span lang="en">PHOTO PRINTING SERVICES</span>',
+            desc: '<span lang="id">Galeri sampel cetakan foto fine art kualitas museum. Kami menggunakan kertas kurasi premium (kanvas, luster, matte, linen) dan teknologi pencetakan mutakhir untuk ketajaman warna yang tak tertandingi.</span><span lang="en">A gallery of museum-quality fine art photo print samples. We use premium curated papers (canvas, luster, matte, linen) and state-of-the-art printing technologies for unmatched color sharpness.</span>',
+            docTitle: 'Photo Printing Services'
         }
     };
 
@@ -100,12 +106,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. INJECT DYNAMIC TITLE & OVERLAY TEXTS
     const activeText = galleryTexts[category];
-    document.getElementById("gallery-subtitle").textContent = activeText.subtitle;
-    document.getElementById("gallery-title").textContent = activeText.title;
-    document.getElementById("gallery-desc").textContent = activeText.desc;
+    document.getElementById("gallery-subtitle").innerHTML = activeText.subtitle;
+    document.getElementById("gallery-title").innerHTML = activeText.title;
+    document.getElementById("gallery-desc").innerHTML = activeText.desc;
     
     // Set active title tag of page
-    document.title = `${activeText.title} | Blok M Studio`;
+    document.title = `${activeText.docTitle} | Blok M Studio`;
 
     // 4. LOAD AND BUILD MARQUEE ROW TRACKS Dynamically
     const photosList = galleryPhotos[category];

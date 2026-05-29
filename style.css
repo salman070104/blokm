@@ -1316,7 +1316,7 @@ body {
 }
 
 /* Slide to EN position when language is set to English */
-body.lang-en .lang-slider {
+html.lang-en .lang-slider {
     left: 46px;
 }
 
@@ -1346,7 +1346,7 @@ body.lang-en .lang-slider {
     border-radius: 30px;
 }
 
-body.lang-en .mobile-lang-switcher .lang-slider {
+html.lang-en .mobile-lang-switcher .lang-slider {
     left: calc(50% + 2px);
 }
 
@@ -1354,12 +1354,12 @@ body.lang-en .mobile-lang-switcher .lang-slider {
    BILINGUAL DISPLAY SELECTOR RULES
    ========================================================================== */
 /* When Indonesian is active, hide English parts */
-body.lang-id [lang="en"] {
+html.lang-id [lang="en"] {
     display: none !important;
 }
 
 /* When English is active, hide Indonesian parts */
-body.lang-en [lang="id"] {
+html.lang-en [lang="id"] {
     display: none !important;
 }
 
