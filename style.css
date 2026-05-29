@@ -25,9 +25,9 @@
     --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     
-    /* Transitions */
-    --transition-smooth: all 0.65s cubic-bezier(0.25, 1, 0.5, 1);
-    --transition-quick: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Transitions - Snappier & Aggressive (0.4s smooth transition with custom bezier) */
+    --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    --transition-quick: all 0.18s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 /* Reset and Base Styles */
@@ -331,16 +331,16 @@ body {
     z-index: 2; /* Active background slide is always index 1 */
 }
 
-/* Stagger entrance on first slide loading — GPU-only (no blur for Windows perf) */
+/* Stagger entrance on first slide loading — Tighter and faster (aggressive style) */
 .carousel .list .item:nth-child(1) .content .author,
 .carousel .list .item:nth-child(1) .content .title,
 .carousel .list .item:nth-child(1) .content .topic,
 .carousel .list .item:nth-child(1) .content .des,
 .carousel .list .item:nth-child(1) .content .buttons,
 .carousel .list .item:nth-child(1) .content .slide-indicator {
-    transform: translateY(30px);
+    transform: translateY(20px);
     opacity: 0;
-    animation: showContent 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showContent 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
     will-change: transform, opacity;
 }
 
@@ -352,22 +352,22 @@ body {
 }
 
 .carousel .list .item:nth-child(1) .content .author {
-    animation-delay: 0.1s;
+    animation-delay: 0.04s;
 }
 .carousel .list .item:nth-child(1) .content .title {
-    animation-delay: 0.2s;
+    animation-delay: 0.08s;
 }
 .carousel .list .item:nth-child(1) .content .topic {
-    animation-delay: 0.28s;
+    animation-delay: 0.12s;
 }
 .carousel .list .item:nth-child(1) .content .des {
-    animation-delay: 0.36s;
+    animation-delay: 0.16s;
 }
 .carousel .list .item:nth-child(1) .content .buttons {
-    animation-delay: 0.44s;
+    animation-delay: 0.2s;
 }
 .carousel .list .item:nth-child(1) .content .slide-indicator {
-    animation-delay: 0.52s;
+    animation-delay: 0.24s;
 }
 
 /* ==========================================================================
@@ -474,7 +474,7 @@ body {
 .carousel.next .list .item:nth-child(1) .slide-bg {
     position: absolute;
     inset: 0;
-    animation: showImage 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showImage 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
     z-index: 5;
     will-change: transform, opacity;
     border-radius: 0;
@@ -496,7 +496,7 @@ body {
 
 /* Shifting sisa thumbnail card ke kiri saat next ditekan */
 .carousel.next .thumbnail .item {
-    animation: effectNext 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: effectNext 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
 }
 
 @keyframes effectNext {
@@ -507,7 +507,7 @@ body {
 
 /* Animate newly added last card in thumbnail */
 .carousel.next .thumbnail .item:nth-last-child(1) {
-    animation: showThumbnailNew 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showThumbnailNew 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
 }
 
 @keyframes showThumbnailNew {
@@ -531,7 +531,7 @@ body {
 .carousel.prev .list .item:nth-child(2) .slide-bg {
     position: absolute;
     inset: 0;
-    animation: shrinkImage 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: shrinkImage 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
     z-index: 5;
     will-change: transform, opacity;
 }
@@ -552,12 +552,12 @@ body {
 
 /* First item in thumbnail newly prepended fades in */
 .carousel.prev .thumbnail .item:nth-child(1) {
-    animation: showThumbnailNew 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showThumbnailNew 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
 }
 
 /* Sisa item thumbnail bergeser ke kanan */
 .carousel.prev .thumbnail .item:not(:nth-child(1)) {
-    animation: effectPrev 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: effectPrev 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1 forwards;
 }
 
 @keyframes effectPrev {
@@ -647,7 +647,7 @@ body {
     width: 0%;
     height: 100%;
     background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-white) 100%);
-    transition: width 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
     will-change: width;
 }
 

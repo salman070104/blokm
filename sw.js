@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blokm-studio-cache-v1';
+const CACHE_NAME = 'blokm-studio-cache-v2';
 
 // Aset yang akan di-pre-cache agar website bisa dibuka secara instan dan offline
 const PRECACHE_ASSETS = [

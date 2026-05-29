@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // 2. STATE AND SETTINGS
     let isTransitioning = false;
-    const transitionTime = 650; // matching style.css (0.65s transition)
-    const autoplayDuration = 8000; // 8 seconds per slide
+    const transitionTime = 400; // matching style.css (0.4s transition)
+    const autoplayDuration = 6000; // 6 seconds per slide
     let autoplayTimer = null;
     
     // Total slides based on elements
