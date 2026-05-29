@@ -1184,18 +1184,29 @@ body {
     
     .header-socials {
         display: flex !important;
-        margin-left: auto;
+        margin-left: 0 !important; /* Clear auto margin to let it align right next to hamburger */
+        gap: 6px !important; /* Tight gaps between social media buttons */
     }
     
-    .social-btn {
-        width: 38px;
-        height: 38px;
+    .header-social-btn {
+        width: 28px !important; /* Compact diameter */
+        height: 28px !important; /* Compact diameter */
     }
-    .social-btn svg {
-        width: 16px;
-        height: 16px;
+    
+    .header-social-btn svg {
+        width: 12px !important; /* Compact icon size */
+        height: 12px !important;
+    }
+    
+    .hamburger-menu-btn {
+        margin-left: 0 !important; /* Reset margin so it relies on container gap */
+    }
+    
+    .header-right {
+        gap: 0.5rem !important; /* Snug spacing between social bar and hamburger menu */
     }
 }
+
 
 /* ==========================================================================
    HEADER SOCIAL BUTTONS (MOBILE FIRST HEADER BAR)
