@@ -154,10 +154,10 @@
 
         /* Premium Glassmorphic Card */
         .package-card {
-            background: rgba(255, 255, 255, 0.02);
+            background: rgba(10, 10, 10, 0.6);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 20px;
             padding: 2.2rem 2rem;
             display: flex;
@@ -166,7 +166,52 @@
             position: relative;
             overflow: hidden;
             transition: var(--transition-quick);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Background image overlay - dark gradient so text stays readable */
+        .package-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                160deg,
+                rgba(5, 5, 10, 0.82) 0%,
+                rgba(5, 5, 15, 0.72) 50%,
+                rgba(5, 5, 10, 0.88) 100%
+            );
+            z-index: 0;
+            border-radius: inherit;
+            transition: background 0.3s ease;
+        }
+
+        /* Lift the card content above the overlay */
+        .package-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Specific background images per category */
+        .wedding-bg {
+            background-image: url('assets/wedding-album-bg.png');
+        }
+        .prewedding-bg {
+            background-image: url('assets/prewedding-album-bg.png');
+        }
+        .video-bg {
+            background-image: url('assets/video-kelulusan-bg.png');
+        }
+        .studio-bg {
+            background-image: url('assets/foto-studio-bg.png');
+        }
+        .yearbook-bg {
+            background-image: url('assets/album-sekolah-bg.png');
+        }
+        .cetak-bg {
+            background-image: url('assets/cetak-foto-bg.png');
         }
 
         .package-card::before {
@@ -179,14 +224,24 @@
             background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
             opacity: 0;
             transition: var(--transition-quick);
+            z-index: 3;
         }
 
         /* Card Hover States */
         .package-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(var(--color-accent-rgb), 0.25);
-            box-shadow: 0 20px 40px rgba(var(--color-accent-rgb), 0.1);
-            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(var(--color-accent-rgb), 0.35);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(var(--color-accent-rgb), 0.15);
+        }
+
+        /* On hover, slightly brighten the overlay to reveal more of the photo */
+        .package-card:hover::after {
+            background: linear-gradient(
+                160deg,
+                rgba(5, 5, 10, 0.70) 0%,
+                rgba(5, 5, 15, 0.60) 50%,
+                rgba(5, 5, 10, 0.76) 100%
+            );
         }
 
         .package-card:hover::before {
@@ -611,7 +666,7 @@
         <section class="packages-grid">
             
             <!-- Wedding 1 Roll -->
-            <article class="package-card wedding-card" data-category="wedding">
+            <article class="package-card wedding-card wedding-bg" data-category="wedding">
                 <div>
                     <span class="card-badge">Popular</span>
                     <span class="card-category">Wedding</span>
@@ -647,7 +702,7 @@
             </article>
 
             <!-- Foto Prewedding -->
-            <article class="package-card wedding-card" data-category="wedding">
+            <article class="package-card wedding-card prewedding-bg" data-category="wedding">
                 <div>
                     <span class="card-category">Prewedding</span>
                     <h2 class="card-title">Exclusive Prewedding Photo</h2>
@@ -682,7 +737,7 @@
             </article>
 
             <!-- Video Cinematic -->
-            <article class="package-card studio-card" data-category="studio">
+            <article class="package-card studio-card video-bg" data-category="studio">
                 <div>
                     <span class="card-category">Videography</span>
                     <h2 class="card-title">Cinematic Video & Highlight</h2>
@@ -717,7 +772,7 @@
             </article>
 
             <!-- Foto Studio -->
-            <article class="package-card studio-card" data-category="studio">
+            <article class="package-card studio-card studio-bg" data-category="studio">
                 <div>
                     <span class="card-category">Studio</span>
                     <h2 class="card-title">Premium Studio Portrait</h2>
@@ -752,7 +807,7 @@
             </article>
 
             <!-- Buku Tahunan / Yearbook -->
-            <article class="package-card yearbook-card" data-category="sekolah">
+            <article class="package-card yearbook-card yearbook-bg" data-category="sekolah">
                 <div>
                     <span class="card-badge">Best Seller</span>
                     <span class="card-category">Yearbook</span>
@@ -788,7 +843,7 @@
             </article>
 
             <!-- Foto Sekolah -->
-            <article class="package-card yearbook-card" data-category="sekolah">
+            <article class="package-card yearbook-card yearbook-bg" data-category="sekolah">
                 <div>
                     <span class="card-category">School</span>
                     <h2 class="card-title">Graduation & School Photo Package</h2>
@@ -823,7 +878,7 @@
             </article>
 
             <!-- Cetak Undangan -->
-            <article class="package-card desain-card" data-category="desain">
+            <article class="package-card desain-card cetak-bg" data-category="desain">
                 <div>
                     <span class="card-category">Invitations</span>
                     <h2 class="card-title">Wedding Invitation Printing</h2>
@@ -858,7 +913,7 @@
             </article>
 
             <!-- Desain Banner -->
-            <article class="package-card desain-card" data-category="desain">
+            <article class="package-card desain-card cetak-bg" data-category="desain">
                 <div>
                     <span class="card-category">Design & Print</span>
                     <h2 class="card-title">Banner Design & Printing Services</h2>
