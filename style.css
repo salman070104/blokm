@@ -1166,6 +1166,11 @@ body {
         display: none !important; /* Hide single WA button on mobile */
     }
     
+    /* Hide the navbar language switcher on mobile, use the one in sidebar instead */
+    .header-right > .lang-switcher {
+        display: none !important;
+    }
+    
     .header-socials {
         display: flex !important;
         margin-left: 0 !important; /* Clear auto margin to let it align right next to hamburger */
