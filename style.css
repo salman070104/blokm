@@ -1253,3 +1253,113 @@ body {
     border-color: #25D366 !important;
     color: #ffffff !important;
 }
+
+/* ==========================================================================
+   PREMIUM GLASSMORPHIC LANGUAGE SWITCHER STYLE
+   ========================================================================== */
+.lang-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3px;
+    border-radius: 30px;
+    width: 92px;
+    height: 38px;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+}
+
+.lang-switcher:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.lang-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.45);
+    font-family: var(--font-heading);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    z-index: 2;
+    transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+.lang-btn.active {
+    color: #07080c !important;
+}
+
+.lang-slider {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 41px;
+    height: 30px;
+    background: linear-gradient(135deg, var(--color-accent) 0%, rgba(var(--color-accent-rgb), 0.7) 100%);
+    border-radius: 20px;
+    z-index: 1;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 15px rgba(var(--color-accent-rgb), 0.3);
+}
+
+/* Slide to EN position when language is set to English */
+body.lang-en .lang-slider {
+    left: 46px;
+}
+
+/* ==========================================================================
+   MOBILE SCREEN BOTTOM MENU AND DRAWER LANGUAGE SWITCHER
+   ========================================================================== */
+.mobile-lang-switcher {
+    width: 100%;
+    height: 48px;
+    padding: 4px;
+    margin-top: 1.5rem;
+    border-radius: 35px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mobile-lang-switcher .lang-btn {
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+}
+
+.mobile-lang-switcher .lang-slider {
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 6px);
+    height: 38px;
+    border-radius: 30px;
+}
+
+body.lang-en .mobile-lang-switcher .lang-slider {
+    left: calc(50% + 2px);
+}
+
+/* ==========================================================================
+   BILINGUAL DISPLAY SELECTOR RULES
+   ========================================================================== */
+/* When Indonesian is active, hide English parts */
+body.lang-id [lang="en"] {
+    display: none !important;
+}
+
+/* When English is active, hide Indonesian parts */
+body.lang-en [lang="id"] {
+    display: none !important;
+}
+
