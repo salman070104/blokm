@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("gallery-desc").textContent = activeText.desc;
     
     // Set active title tag of page
-    document.title = `${activeText.title} | BLOK M Studio Printing`;
+    document.title = `${activeText.title} | Blok M Studio`;
 
     // 4. LOAD AND BUILD MARQUEE ROW TRACKS Dynamically
     const photosList = galleryPhotos[category];
