@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // 2. STATE AND SETTINGS
     let isTransitioning = false;
-    const transitionTime = 800; // matching style.css (0.8s transition)
+    const transitionTime = 650; // matching style.css (0.65s transition)
     const autoplayDuration = 8000; // 8 seconds per slide
     let autoplayTimer = null;
     
@@ -50,16 +50,23 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Helper to calculate exact physical card coordinates for dynamic zoom animation
+    // Helper to calculate zoom transform origin based on clicked card position
     function setZoomCoordinates(cardElement) {
         if (!cardElement) return;
         const rect = cardElement.getBoundingClientRect();
-        
-        carousel.style.setProperty("--zoom-start-left", `${rect.left}px`);
-        carousel.style.setProperty("--zoom-start-top", `${rect.top}px`);
-        carousel.style.setProperty("--zoom-start-width", `${rect.width}px`);
-        carousel.style.setProperty("--zoom-start-height", `${rect.height}px`);
-        carousel.style.setProperty("--zoom-start-radius", "20px");
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        // Calculate scale factor: card size vs full viewport
+        const scaleX = rect.width / vw;
+        const scaleY = rect.height / vh;
+        const scale = Math.max(scaleX, scaleY);
+        // Calculate translation to card center (as percentage of full size)
+        const cardCx = rect.left + rect.width / 2;
+        const cardCy = rect.top + rect.height / 2;
+        const dx = ((cardCx / vw) - 0.5) * (1 / scale) * 100;
+        const dy = ((cardCy / vh) - 0.5) * (1 / scale) * 100;
+        const transformFrom = `scale(${scale}) translate(${dx}%, ${dy}%)`;
+        carousel.style.setProperty("--zoom-transform-from", transformFrom);
     }
 
     // 4. MAIN TRANSITION FUNCTION
@@ -218,21 +225,3 @@ document.addEventListener("DOMContentLoaded", () => {
     startAutoplay();
 });
 
-/* ==========================================================================
-   NAVBAR SCROLL BACKGROUND
-   ========================================================================== */
-(function () {
-    const header = document.querySelector('.main-header');
-    if (!header) return;
-
-    function onScroll() {
-        if (window.scrollY > 60) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // run once on load in case page is already scrolled
-})();

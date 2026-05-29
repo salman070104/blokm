@@ -26,8 +26,8 @@
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     
     /* Transitions */
-    --transition-smooth: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-    --transition-quick: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-smooth: all 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-quick: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 /* Reset and Base Styles */
@@ -194,9 +194,8 @@ body {
     background-position: center;
     position: absolute;
     inset: 0 0 0 0;
-    transition: filter 0.8s ease;
-    /* Hardware GPU Acceleration Hints */
-    will-change: transform, opacity, top, left, width, height;
+    /* GPU-composited properties only - no layout reflow */
+    will-change: transform, opacity;
     transform: translate3d(0, 0, 0);
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
@@ -332,44 +331,43 @@ body {
     z-index: 2; /* Active background slide is always index 1 */
 }
 
-/* Stagger entrance on first slide loading */
+/* Stagger entrance on first slide loading — GPU-only (no blur for Windows perf) */
 .carousel .list .item:nth-child(1) .content .author,
 .carousel .list .item:nth-child(1) .content .title,
 .carousel .list .item:nth-child(1) .content .topic,
 .carousel .list .item:nth-child(1) .content .des,
 .carousel .list .item:nth-child(1) .content .buttons,
 .carousel .list .item:nth-child(1) .content .slide-indicator {
-    transform: translateY(40px);
-    filter: blur(15px);
+    transform: translateY(30px);
     opacity: 0;
-    animation: showContent 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showContent 0.6s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    will-change: transform, opacity;
 }
 
 @keyframes showContent {
     to {
         transform: translateY(0);
-        filter: blur(0);
         opacity: 1;
     }
 }
 
 .carousel .list .item:nth-child(1) .content .author {
-    animation-delay: 0.2s;
+    animation-delay: 0.1s;
 }
 .carousel .list .item:nth-child(1) .content .title {
-    animation-delay: 0.3s;
+    animation-delay: 0.2s;
 }
 .carousel .list .item:nth-child(1) .content .topic {
-    animation-delay: 0.4s;
+    animation-delay: 0.28s;
 }
 .carousel .list .item:nth-child(1) .content .des {
-    animation-delay: 0.5s;
+    animation-delay: 0.36s;
 }
 .carousel .list .item:nth-child(1) .content .buttons {
-    animation-delay: 0.6s;
+    animation-delay: 0.44s;
 }
 .carousel .list .item:nth-child(1) .content .slide-indicator {
-    animation-delay: 0.7s;
+    animation-delay: 0.52s;
 }
 
 /* ==========================================================================
@@ -474,37 +472,31 @@ body {
    NEXT SLIDE ANIMATION TRIGGER
    ========================================================================== */
 .carousel.next .list .item:nth-child(1) .slide-bg {
-    width: var(--zoom-start-width, 150px);
-    height: var(--zoom-start-height, 220px);
     position: absolute;
-    top: var(--zoom-start-top, calc(100vh - 270px));
-    bottom: auto;
-    left: var(--zoom-start-left, 50%);
-    border-radius: var(--zoom-start-radius, 20px);
-    animation: showImage 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    inset: 0;
+    animation: showImage 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
     z-index: 5;
+    will-change: transform, opacity;
+    border-radius: 0;
 }
 
+/* GPU-only zoom: use transform scale+translate instead of top/left/width/height */
 @keyframes showImage {
     from {
-        top: var(--zoom-start-top, calc(100vh - 270px));
-        left: var(--zoom-start-left, 50%);
-        width: var(--zoom-start-width, 150px);
-        height: var(--zoom-start-height, 220px);
-        border-radius: var(--zoom-start-radius, 20px);
+        transform: var(--zoom-transform-from, scale(0.15) translate(-35%, 35%));
+        opacity: 0.6;
+        border-radius: 20px;
     }
     to {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
         border-radius: 0;
     }
 }
 
 /* Shifting sisa thumbnail card ke kiri saat next ditekan */
 .carousel.next .thumbnail .item {
-    animation: effectNext 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: effectNext 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
 @keyframes effectNext {
@@ -515,17 +507,17 @@ body {
 
 /* Animate newly added last card in thumbnail */
 .carousel.next .thumbnail .item:nth-last-child(1) {
-    animation: showThumbnailNew 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showThumbnailNew 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
 @keyframes showThumbnailNew {
     from {
-        width: 0;
         opacity: 0;
+        transform: scale(0.8);
     }
     to {
-        width: 150px;
         opacity: 1;
+        transform: scale(1);
     }
 }
 
@@ -537,41 +529,35 @@ body {
 }
 
 .carousel.prev .list .item:nth-child(2) .slide-bg {
-    /* Shrinking fullscreen active background slide to thumbnail card size */
-    width: 100%;
-    height: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
-    animation: shrinkImage 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    inset: 0;
+    animation: shrinkImage 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
     z-index: 5;
+    will-change: transform, opacity;
 }
 
+/* GPU-only shrink: use transform scale+translate instead of top/left/width/height */
 @keyframes shrinkImage {
     from {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        transform: scale(1) translate(0, 0);
+        opacity: 1;
         border-radius: 0;
     }
     to {
-        top: var(--zoom-start-top, calc(100vh - 270px));
-        left: var(--zoom-start-left, 50%);
-        width: var(--zoom-start-width, 150px);
-        height: var(--zoom-start-height, 220px);
-        border-radius: var(--zoom-start-radius, 20px);
+        transform: var(--zoom-transform-from, scale(0.15) translate(-35%, 35%));
+        opacity: 0.4;
+        border-radius: 20px;
     }
 }
 
 /* First item in thumbnail newly prepended fades in */
 .carousel.prev .thumbnail .item:nth-child(1) {
-    animation: showThumbnailNew 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: showThumbnailNew 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
 /* Sisa item thumbnail bergeser ke kanan */
 .carousel.prev .thumbnail .item:not(:nth-child(1)) {
-    animation: effectPrev 0.8s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
+    animation: effectPrev 0.65s cubic-bezier(0.25, 1, 0.5, 1) 1 forwards;
 }
 
 @keyframes effectPrev {
@@ -661,7 +647,8 @@ body {
     width: 0%;
     height: 100%;
     background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-white) 100%);
-    transition: width 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: width 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: width;
 }
 
 /* Lock interactions during transitions */
