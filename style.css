@@ -490,7 +490,6 @@ img {
     overflow: hidden;
     aspect-ratio: 3/4;
     cursor: pointer;
-    group: true;
 }
 
 .featured-card img {
