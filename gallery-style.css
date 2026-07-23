@@ -1,203 +1,171 @@
 /* ==========================================================================
-   CSS SYSTEM DESIGN - PHOTO WALL GALLERY PAGE (TIKTOK STYLE)
+   GALLERY / PORTFOLIO — Dark Luxury Masonry Grid
    ========================================================================== */
 
 .gallery-body {
     background-color: var(--color-bg-deep);
     color: var(--color-text-primary);
+    font-family: var(--font-body);
     overflow-x: hidden;
-    overflow-y: auto; /* Allow normal scrolling of the entire page if height overflows */
-    height: 100vh;
-    width: 100vw;
+    overflow-y: auto;
+    height: auto;
 }
 
-/* Floating Return Button */
-.back-home-btn {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.7rem 1.6rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--color-white);
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-decoration: none;
-    border-radius: 25px;
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-    transition: var(--transition-quick);
-}
-
-.back-home-btn:hover {
-    background: var(--color-white);
-    color: #000000;
-    border-color: var(--color-white);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
-}
-
-/* Heading Content Section */
-.gallery-heading-area {
-    padding: 8rem 5% 2.5rem 5%;
-    text-align: center;
-    max-width: 800px;
+/* Gallery Main Content */
+.gallery-container {
+    padding-top: 130px;
+    padding-bottom: 80px;
+    max-width: 1300px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 92%;
+}
+
+/* Gallery Hero Header */
+.gallery-heading-area {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .gallery-tag {
-    font-weight: 700;
-    font-size: 0.9rem;
-    letter-spacing: 4px;
-    color: #ff5f00; /* Vibrant Orange for consistent gallery tag */
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: var(--color-gold);
+    font-size: 0.78rem;
+    margin-bottom: 1rem;
     text-transform: uppercase;
-    margin-bottom: 0.75rem;
+    display: block;
 }
 
 .gallery-title {
     font-family: var(--font-heading);
-    font-weight: 900;
-    font-size: 3.5rem;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.2rem);
     color: var(--color-white);
-    text-transform: uppercase;
-    line-height: 1.1;
-    margin-bottom: 1.25rem;
-    letter-spacing: -0.5px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    margin-bottom: 1rem;
 }
 
 .gallery-desc {
-    font-size: 1.05rem;
-    line-height: 1.6;
     color: var(--color-text-secondary);
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 650px;
+    margin: 0 auto;
 }
 
-/* ==========================================================================
-   SCROLLING PHOTO WALLS
-   ========================================================================== */
-.photo-wall-section {
+/* Filter Bar */
+.gallery-filter-bar {
     display: flex;
-    flex-direction: column;
-    gap: 28px;
-    width: 100vw;
-    overflow: hidden;
-    padding: 1.5rem 0 5rem 0;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s 0.2s ease-out both;
 }
 
-.marquee-row {
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
-    padding: 5px 0;
-}
-
-/* Row Tracks - Containing the photos duplicated for infinite seamless scrolling */
-.row-track {
-    display: flex;
-    gap: 28px;
-    width: max-content;
-}
-
-/* Pause scroll animation when user hovers over the photo row! (Highly interactive) */
-.row-track:hover {
-    animation-play-state: paused !important;
-}
-
-/* Infinite Marquee Scrolling Animations */
-.row-left .row-track {
-    animation: marqueeLeft 38s linear infinite;
-}
-
-.row-right .row-track {
-    animation: marqueeRight 38s linear infinite;
-}
-
-@keyframes marqueeLeft {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%); /* Loop seamless because content is strictly duplicated */
-    }
-}
-
-@keyframes marqueeRight {
-    0% {
-        transform: translateX(-50%);
-    }
-    100% {
-        transform: translateX(0);
-    }
-}
-
-/* Photo Card Elements */
-.photo-card {
-    width: 320px;
-    height: 220px;
-    border-radius: 16px;
-    overflow: hidden;
+.filter-btn {
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: 30px;
+    color: var(--color-text-secondary);
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
     cursor: pointer;
-    flex-shrink: 0;
+    transition: var(--transition-quick);
+}
+
+.filter-btn:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+    color: var(--color-gold);
+}
+
+.filter-btn.active {
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-black);
+}
+
+/* Masonry Grid */
+.masonry-grid {
+    columns: 3;
+    column-gap: 1.25rem;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1.25rem;
+    border-radius: 12px;
+    overflow: hidden;
     position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    cursor: pointer;
+    transition: var(--transition-smooth);
 }
 
-.photo-card img {
+.masonry-item img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 16px;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+    display: block;
+    border-radius: 12px;
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-/* Dark gradient card overlay */
-.photo-card::after {
-    content: '';
+.masonry-item:hover img {
+    transform: scale(1.05);
+}
+
+.masonry-item-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to top, rgba(7, 8, 12, 0.4) 0%, rgba(7, 8, 12, 0) 60%);
-    z-index: 2;
-    transition: opacity 0.3s ease;
+    background: linear-gradient(to top, rgba(10, 10, 15, 0.85) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: flex-end;
+    padding: 1.5rem;
+    border-radius: 12px;
 }
 
-/* Card Hover States */
-.photo-card:hover {
-    transform: scale(1.06) translateY(-6px);
-    border-color: #ff5f00; /* Neon Orange border glow on hover */
-    box-shadow: 0 15px 35px rgba(255, 95, 0, 0.3), 0 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 100;
+.masonry-item:hover .masonry-item-overlay {
+    opacity: 1;
 }
 
-.photo-card:hover img {
-    transform: scale(1.06);
+.masonry-item-info {
+    color: var(--color-white);
 }
 
-/* ==========================================================================
-   LIGHTBOX FULLSCREEN OVERLAY
-   ========================================================================== */
+.masonry-item-info .category {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    margin-bottom: 0.3rem;
+}
+
+.masonry-item-info .title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Lightbox */
 .lightbox-modal {
     position: fixed;
     inset: 0;
-    z-index: 10000; /* Must be extremely high to cover navigation header */
-    background: rgba(4, 5, 8, 0.96);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
+    z-index: 5000;
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: opacity 0.4s ease;
 }
 
 .lightbox-modal.active {
@@ -205,75 +173,97 @@
     pointer-events: auto;
 }
 
-/* Close Button Floating */
 .lightbox-close {
     position: absolute;
-    top: 30px;
-    right: 5%;
-    width: 54px;
-    height: 54px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 50%;
+    top: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     color: var(--color-white);
-    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
     transition: var(--transition-quick);
-    z-index: 10100;
+    z-index: 10;
 }
 
 .lightbox-close:hover {
-    background: var(--color-white);
-    color: #000000;
-    transform: scale(1.05) rotate(90deg);
+    background: var(--color-gold);
+    border-color: var(--color-gold);
+    color: var(--color-black);
 }
 
 .lightbox-content {
-    max-width: 90%;
-    max-height: 80vh;
+    max-width: 90vw;
+    max-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
 }
 
 .lightbox-content img {
     max-width: 100%;
-    max-height: 80vh;
+    max-height: 85vh;
     object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
-    transform: scale(0.92);
-    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
-.lightbox-modal.active .lightbox-content img {
-    transform: scale(1);
+/* Back Home Button */
+.back-home-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-text-secondary);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: var(--transition-quick);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
 }
 
-/* Responsive Galleries styling */
+.back-home-btn:hover {
+    color: var(--color-gold);
+    border-color: rgba(201, 168, 76, 0.3);
+}
+
+.back-home-btn .btn-icon {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+    .masonry-grid {
+        columns: 2;
+    }
+}
+
 @media (max-width: 768px) {
-    .gallery-heading-area {
-        padding: 10rem 5% 1.5rem 5%;
+    .gallery-container {
+        padding-top: 110px;
     }
     
     .gallery-title {
-        font-size: 2.4rem;
+        font-size: 2rem;
     }
-    
-    .gallery-desc {
-        font-size: 0.95rem;
+
+    .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.7rem;
     }
-    
-    .photo-wall-section {
-        gap: 18px;
-        padding-bottom: 3rem;
-    }
-    
-    .photo-card {
-        width: 220px;
-        height: 150px;
+}
+
+@media (max-width: 500px) {
+    .masonry-grid {
+        columns: 1;
     }
 }

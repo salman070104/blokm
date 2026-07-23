@@ -1,6 +1,7 @@
 /* ==========================================================================
    NAVBAR SCROLL BACKGROUND — shared across all pages
    Adds/removes `.scrolled` class on .main-header when scrollY > 60px
+   Dark glassmorphism variant for photographer theme
    ========================================================================== */
 (function () {
     var header = document.querySelector('.main-header');
@@ -32,4 +33,3 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
-
