@@ -90,7 +90,7 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 5%;
+    padding: 1rem 5%;
     z-index: 1000;
     background: transparent;
     transition: background 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
@@ -101,7 +101,7 @@ img {
     background: rgba(10, 10, 15, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    padding: 1rem 5%;
+    padding: 0.6rem 5%;
     box-shadow: 0 1px 0 rgba(201, 168, 76, 0.08), 0 4px 30px rgba(0, 0, 0, 0.4);
     border-bottom: 1px solid rgba(201, 168, 76, 0.06);
 }
@@ -118,7 +118,7 @@ img {
 }
 
 .logo-img {
-    height: 22px;
+    height: 18px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -134,19 +134,19 @@ img {
 .header-right {
     display: flex;
     align-items: center;
-    gap: 3rem;
+    gap: 1.5rem;
 }
 
 .main-nav ul {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 1.5rem;
 }
 
 .nav-link {
     color: var(--color-text-secondary);
     text-decoration: none;
-    font-size: 0.82rem;
+    font-size: 0.75rem;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -1091,7 +1091,7 @@ img {
     border: none;
     color: var(--color-text-muted);
     font-family: var(--font-body);
-    font-size: 0.72rem;
+    font-size: 1.1rem;
     font-weight: 800;
     letter-spacing: 1px;
     cursor: pointer;
