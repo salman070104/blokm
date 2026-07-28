@@ -48,6 +48,316 @@
     --transition-slow: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
+/* ==========================================================================
+   LIGHT THEME — Elegant Warm White with Gold Accents
+   Applied via html.light-theme class toggled by theme-switcher.js
+   ========================================================================== */
+html.light-theme {
+    /* Color Palette — Light Luxury */
+    --color-bg-deep: #faf8f5;
+    --color-bg-card: #ffffff;
+    --color-bg-elevated: #f5f2ee;
+    --color-bg-surface: #ede8e1;
+
+    /* Gold Accent (slightly darker for contrast on light) */
+    --color-gold: #b8942f;
+    --color-gold-light: #d4af4c;
+    --color-gold-dark: #9a7a20;
+    --color-gold-rgb: 184, 148, 47;
+
+    /* Neutral Colors */
+    --color-white: #1a1a2e;
+    --color-white-pure: #0a0a0f;
+    --color-black: #faf8f5;
+
+    /* Text Hierarchy */
+    --color-text-primary: #1a1a2e;
+    --color-text-secondary: #5a5a70;
+    --color-text-muted: #9a9aaf;
+
+    /* Active accent */
+    --color-accent: #b8942f;
+    --color-accent-rgb: 184, 148, 47;
+
+    /* Surface & Border */
+    --color-surface: rgba(0, 0, 0, 0.03);
+    --color-border: rgba(0, 0, 0, 0.08);
+    --color-border-hover: rgba(184, 148, 47, 0.3);
+
+    color-scheme: light;
+}
+
+/* Smooth theme transition */
+html {
+    transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+body,
+.main-header,
+.service-card,
+.testimonial-card,
+.cta-section,
+.site-footer,
+.featured-card-overlay,
+.sidebar-link,
+.nav-link,
+.btn-primary,
+.btn-secondary,
+.section-title,
+.section-label,
+.section-desc,
+.hero-title,
+.hero-subtitle,
+.hero-tagline,
+.service-title,
+.service-desc,
+.stat-number,
+.stat-label,
+.testimonial-text,
+.testimonial-name,
+.cta-title,
+.cta-desc,
+.footer-heading,
+.footer-links a,
+.footer-copyright {
+    transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* — Light theme header overrides — */
+html.light-theme .main-header.scrolled {
+    background: rgba(250, 248, 245, 0.88);
+    box-shadow: 0 1px 0 rgba(184, 148, 47, 0.1), 0 4px 30px rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(184, 148, 47, 0.08);
+}
+
+/* — Light theme logo inversion — */
+html.light-theme .logo-img {
+    filter: invert(1) brightness(0.2);
+}
+
+html.light-theme .logo-img:hover {
+    filter: invert(1) brightness(0.1);
+}
+
+/* — Light theme button overrides — */
+html.light-theme .btn-primary {
+    color: #ffffff;
+    box-shadow: 0 8px 25px rgba(184, 148, 47, 0.25);
+}
+
+html.light-theme .btn-primary:hover {
+    box-shadow: 0 12px 35px rgba(184, 148, 47, 0.4);
+}
+
+html.light-theme .btn-secondary {
+    color: var(--color-text-primary);
+    border-color: rgba(0, 0, 0, 0.15);
+}
+
+html.light-theme .btn-secondary:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: var(--color-gold);
+    color: var(--color-gold);
+}
+
+/* — Light theme card overrides — */
+html.light-theme .service-card {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+html.light-theme .service-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+    background: var(--color-bg-card);
+}
+
+html.light-theme .service-icon {
+    background: rgba(184, 148, 47, 0.1);
+    border-color: rgba(184, 148, 47, 0.2);
+}
+
+html.light-theme .testimonial-card {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+html.light-theme .testimonial-card:hover {
+    border-color: rgba(184, 148, 47, 0.2);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+html.light-theme .testimonial-avatar {
+    color: #ffffff;
+}
+
+/* — Light theme CTA overrides — */
+html.light-theme .cta-section {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* — Light theme featured card overlay — */
+html.light-theme .featured-card-overlay {
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.85) 0%, rgba(26, 26, 46, 0.15) 50%, transparent 100%);
+}
+
+html.light-theme .featured-card:hover .featured-card-overlay {
+    background: linear-gradient(to top, rgba(26, 26, 46, 0.92) 0%, rgba(26, 26, 46, 0.25) 50%, rgba(26, 26, 46, 0.05) 100%);
+}
+
+html.light-theme .featured-card-title {
+    color: #f5f0eb;
+}
+
+/* — Light theme footer overrides — */
+html.light-theme .site-footer {
+    background: var(--color-bg-elevated);
+}
+
+html.light-theme .footer-copyright a {
+    color: var(--color-gold);
+}
+
+/* — Light theme hamburger/sidebar overrides — */
+html.light-theme .hamburger-bar {
+    background-color: var(--color-text-primary);
+}
+
+html.light-theme .social-btn {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+html.light-theme .header-social-btn {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: var(--color-text-secondary);
+}
+
+/* — Light theme scroll indicator — */
+html.light-theme .scroll-line {
+    background: linear-gradient(to bottom, var(--color-gold), transparent);
+}
+
+/* — Light theme lang switcher — */
+html.light-theme .lang-switcher {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light-theme .lang-switcher:hover {
+    border-color: rgba(184, 148, 47, 0.25);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+html.light-theme .lang-btn.active {
+    color: #ffffff !important;
+}
+
+/* — Light theme map iframe — */
+html.light-theme iframe {
+    filter: grayscale(0.2) brightness(1) !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE BUTTON
+   ========================================================================== */
+.theme-toggle-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 0;
+    outline: none;
+}
+
+.theme-toggle-btn:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    transform: scale(1.08);
+}
+
+.theme-toggle-btn:active {
+    transform: scale(0.95);
+}
+
+html.light-theme .theme-toggle-btn {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+html.light-theme .theme-toggle-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: rgba(184, 148, 47, 0.3);
+}
+
+/* Theme icon animation */
+.theme-icon-sun,
+.theme-icon-moon {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.theme-icon-sun {
+    color: var(--color-gold);
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-moon {
+    color: var(--color-gold);
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+}
+
+/* Mobile sidebar theme toggle */
+.sidebar-theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    width: 100%;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+}
+
+.sidebar-theme-toggle:hover {
+    border-color: rgba(201, 168, 76, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-gold);
+}
+
+html.light-theme .sidebar-theme-toggle {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+html.light-theme .sidebar-theme-toggle:hover {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(184, 148, 47, 0.2);
+    color: var(--color-gold);
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
