@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "blokmstudiopercetakan.vercel.app"
+        }
+      ],
+      "destination": "https://www.blokmstudio.com/$1",
+      "permanent": true
+    }
+  ]
+}
