@@ -1115,6 +1115,8 @@ img {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links a {
@@ -1328,15 +1330,7 @@ img {
    HEADER SOCIAL BUTTONS (MOBILE HEADER BAR)
    ========================================================================== */
 .header-socials {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-@media (min-width: 769px) {
-    .header-socials {
-        display: none !important;
-    }
+    display: none !important;
 }
 
 .header-social-btn {
