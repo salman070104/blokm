@@ -1608,13 +1608,9 @@ html.lang-en .lang-slider {
         gap: 0.75rem;
     }
 
-    .header-right > 
-
-
-
-html.lang-en .mobile-lang-switcher .lang-slider {
-    left: calc(50% + 2px);
-}
+    .header-right > .lang-toggle-btn {
+        display: none !important;
+    }
 
 /* ==========================================================================
    BILINGUAL DISPLAY SELECTOR RULES
