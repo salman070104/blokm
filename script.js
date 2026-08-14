@@ -141,4 +141,39 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+
+    // =========================================================================
+    // 6. TYPEWRITER EFFECT FOR HERO TAGLINE
+    // =========================================================================
+    const heroTaglines = document.querySelectorAll(".hero-tagline span");
+    heroTaglines.forEach(tagline => {
+        // Save original text
+        const text = tagline.textContent.trim();
+        // Clear text to start typing
+        tagline.textContent = "";
+        
+        // Setup blinking cursor using CSS variable
+        tagline.style.borderRight = "2px solid var(--color-accent)";
+        tagline.style.paddingRight = "4px";
+        tagline.style.whiteSpace = "nowrap";
+        
+        let i = 0;
+        
+        function typeWriter() {
+            if (i < text.length) {
+                tagline.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 80); // Speed of typing in ms
+            } else {
+                // Blinking cursor after typing finished
+                setInterval(() => {
+                    tagline.style.borderColor = tagline.style.borderColor === "transparent" ? "var(--color-accent)" : "transparent";
+                }, 600);
+            }
+        }
+        
+        // Start typing after initial fade-in animation finishes
+        setTimeout(typeWriter, 800);
+    });
+
 });
