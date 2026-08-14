@@ -1605,6 +1605,7 @@ html.lang-en .lang-slider {
     .header-right {
         width: auto;
         gap: 0.75rem;
+        margin-left: auto;
     }
 
     .header-right > .lang-toggle-btn {
@@ -1646,8 +1647,18 @@ html.lang-en .lang-slider {
         grid-template-columns: 1fr !important;
     }
     
-    .stats-grid {
+    .stats-bar {
         grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+        padding: 2.5rem 0;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
     }
 
     .about-grid, 
@@ -1667,6 +1678,20 @@ html.lang-en .lang-slider {
     
     .footer-brand .logo-img {
         margin: 0 auto 1.2rem;
+    }
+
+    .footer-brand p {
+        max-width: 100%;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+
+    .footer-bottom p[style*="text-align: right"] {
+        text-align: center !important;
     }
 
 }
