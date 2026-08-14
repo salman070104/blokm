@@ -3,8 +3,7 @@
    Dark Luxury Theme with Gold Accents
    ========================================================================== */
 
-/* Google Fonts Import — Playfair Display for elegant serif headings */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Crimson+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
 
 :root {
     /* Color Palette — Dark Luxury */
@@ -39,8 +38,8 @@
     --color-border-hover: rgba(201, 168, 76, 0.25);
 
     /* Typography */
-    --font-heading: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
-    --font-body: 'Crimson Pro', 'Georgia', 'Times New Roman', serif;
+    --font-heading: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
     /* Transitions */
     --transition-smooth: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -238,19 +237,11 @@ html.light-theme .scroll-line {
 }
 
 /* — Light theme lang switcher — */
-html.light-theme .lang-switcher {
-    background: rgba(0, 0, 0, 0.04);
-    border-color: rgba(0, 0, 0, 0.08);
-}
 
-html.light-theme .lang-switcher:hover {
-    border-color: rgba(184, 148, 47, 0.25);
-    background: rgba(0, 0, 0, 0.06);
-}
 
-html.light-theme .lang-btn.active {
-    color: #ffffff !important;
-}
+
+
+
 
 /* — Light theme map iframe — */
 html.light-theme iframe {
@@ -1375,61 +1366,49 @@ img {
 /* ==========================================================================
    LANGUAGE SWITCHER — DARK VARIANT
    ========================================================================== */
-.lang-switcher {
+
+/* ==========================================================================
+   LANGUAGE TOGGLE BUTTON
+   ========================================================================== */
+.lang-toggle-btn {
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3px;
-    border-radius: 30px;
-    width: 92px;
+    border-radius: 20px;
+    width: 48px;
     height: 38px;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.lang-switcher:hover {
-    border-color: rgba(201, 168, 76, 0.2);
-    background: rgba(255, 255, 255, 0.06);
+.lang-toggle-btn:hover {
+    border-color: rgba(201, 168, 76, 0.3);
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--color-gold);
 }
 
-.lang-btn {
-    flex: 1;
-    background: none;
-    border: none;
-    color: var(--color-text-muted);
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    cursor: pointer;
-    z-index: 2;
-    transition: color 0.3s;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    outline: none;
+html.light-theme .lang-toggle-btn {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.08);
+    color: var(--color-black);
 }
 
-.lang-btn.active {
-    color: var(--color-black) !important;
+html.light-theme .lang-toggle-btn:hover {
+    border-color: rgba(184, 148, 47, 0.3);
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-gold-dark);
 }
 
-.lang-slider {
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 41px;
-    height: 30px;
-    background: var(--color-gold);
-    border-radius: 20px;
-    z-index: 1;
-    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 2px 8px rgba(201, 168, 76, 0.3);
-}
 
 html.lang-en .lang-slider {
     left: 46px;
@@ -1629,182 +1608,9 @@ html.lang-en .lang-slider {
         gap: 0.75rem;
     }
 
-    .header-right > .lang-switcher {
-        display: none !important;
-    }
+    .header-right > 
 
-    .floating-socials {
-        display: none !important;
-    }
 
-    .header-socials {
-        display: flex !important;
-        gap: 6px !important;
-    }
-
-    .header-social-btn {
-        width: 28px !important;
-        height: 28px !important;
-    }
-
-    .header-social-btn svg {
-        width: 12px !important;
-        height: 12px !important;
-    }
-
-    .hamburger-menu-btn {
-        margin-left: 0 !important;
-    }
-
-    .header-right {
-        gap: 0.5rem !important;
-    }
-
-    /* Mobile Hero — Stack vertically */
-    .hero-section {
-        padding: 100px 5% 40px;
-        min-height: auto;
-    }
-
-    .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        text-align: center;
-    }
-
-    .hero-content {
-        text-align: center;
-    }
-
-    .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .hero-title {
-        font-size: clamp(2rem, 8vw, 3rem) !important;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .hero-photos {
-        height: 320px;
-        gap: 0.6rem;
-    }
-
-    .hero-scroll-indicator {
-        display: none;
-    }
-
-    /* Mobile Grids */
-    .featured-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-    }
-
-    .stats-bar {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-
-    .section {
-        padding: 4rem 5%;
-    }
-}
-
-@media (max-width: 480px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stat-number {
-        font-size: 2.2rem;
-    }
-
-    .testimonial-card {
-        flex: 0 0 300px;
-    }
-
-    .hero-photos {
-        height: 260px;
-        gap: 0.5rem;
-    }
-
-    .hero-photo {
-        border-radius: 10px;
-    }
-
-    .hero-photo-1,
-    .hero-photo-2,
-    .hero-photo-3,
-    .hero-photo-4 {
-        border-radius: 10px;
-    }
-
-    .hero-tagline {
-        font-size: 0.65rem;
-        letter-spacing: 4px;
-    }
-
-    .hero-subtitle {
-        font-size: 0.9rem;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-        width: 100%;
-        justify-content: center;
-        padding: 0.9rem 1.5rem;
-        font-size: 0.75rem;
-    }
-
-    .cta-section {
-        padding: 3rem 1.5rem;
-    }
-}
-
-/* Mobile Language Switcher in Sidebar */
-.mobile-lang-switcher {
-    width: 100%;
-    height: 48px;
-    padding: 4px;
-    margin-top: 1.5rem;
-    border-radius: 35px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.mobile-lang-switcher .lang-btn {
-    font-size: 0.8rem;
-    letter-spacing: 1.5px;
-}
-
-.mobile-lang-switcher .lang-slider {
-    top: 4px;
-    left: 4px;
-    width: calc(50% - 6px);
-    height: 38px;
-    border-radius: 30px;
-}
 
 html.lang-en .mobile-lang-switcher .lang-slider {
     left: calc(50% + 2px);
@@ -1829,4 +1635,58 @@ html.lang-en [lang="id"] {
 * {
     -ms-overflow-style: none !important;
     scrollbar-width: none !important;
+}
+
+/* ==========================================================================
+   LIGHTBOX
+   ========================================================================== */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    line-height: 1;
+    transition: color 0.3s;
+}
+
+.lightbox-close:hover {
+    color: var(--color-gold);
 }
