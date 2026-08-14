@@ -9,7 +9,7 @@
     <meta name="description" content="Complete photography service packages by BLOK M Studio. Wedding, prewedding, studio portrait, graduation, and event photography with transparent premium pricing.">
     <meta name="keywords" content="photography packages, wedding photography pricing, prewedding package, studio portrait, graduation photography">
     
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
     <script src="lang-switcher.js"></script>
     <script src="theme-switcher.js"></script>
     
@@ -95,14 +95,14 @@
 
         .package-card:hover {
             transform: translateY(-8px);
-            border-color: rgba(37, 99, 235, 0.2);
+            border-color: rgba(var(--color-gold-rgb), 0.2);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
         }
 
         .package-card:hover::before { opacity: 1; }
 
         .package-card.featured {
-            border-color: rgba(37, 99, 235, 0.3);
+            border-color: rgba(var(--color-gold-rgb), 0.3);
             background: linear-gradient(135deg, var(--color-bg-card), var(--color-bg-elevated));
         }
 
@@ -129,8 +129,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(37, 99, 235, 0.08);
-            border: 1px solid rgba(37, 99, 235, 0.15);
+            background: rgba(var(--color-gold-rgb), 0.08);
+            border: 1px solid rgba(var(--color-gold-rgb), 0.15);
             color: var(--color-gold);
             margin-bottom: 1.5rem;
         }
@@ -199,7 +199,7 @@
 
         .package-cta-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 8px 25px rgba(var(--color-gold-rgb), 0.25);
         }
 
         .package-cta-secondary {
