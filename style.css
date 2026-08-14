@@ -1660,7 +1660,27 @@ html.lang-en .lang-slider {
         gap: 0.5rem !important;
     }
 
-    /* Mobile Hero */
+    /* Mobile Hero — Stack vertically */
+    .hero-section {
+        padding: 100px 5% 40px;
+        min-height: auto;
+    }
+
+    .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        text-align: center;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .hero-title {
         font-size: clamp(2rem, 8vw, 3rem) !important;
     }
@@ -1668,6 +1688,11 @@ html.lang-en .lang-slider {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    .hero-photos {
+        height: 320px;
+        gap: 0.6rem;
     }
 
     .hero-scroll-indicator {
@@ -1717,6 +1742,43 @@ html.lang-en .lang-slider {
 
     .testimonial-card {
         flex: 0 0 300px;
+    }
+
+    .hero-photos {
+        height: 260px;
+        gap: 0.5rem;
+    }
+
+    .hero-photo {
+        border-radius: 10px;
+    }
+
+    .hero-photo-1,
+    .hero-photo-2,
+    .hero-photo-3,
+    .hero-photo-4 {
+        border-radius: 10px;
+    }
+
+    .hero-tagline {
+        font-size: 0.65rem;
+        letter-spacing: 4px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 0.9rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    .cta-section {
+        padding: 3rem 1.5rem;
     }
 }
 
