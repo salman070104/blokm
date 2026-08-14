@@ -1593,6 +1593,11 @@ html.lang-en .lang-slider {
         border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     }
 
+    html.light-theme .main-header {
+        background: rgba(248, 249, 250, 0.95);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
     .main-nav {
         display: none;
     }
@@ -1636,7 +1641,8 @@ html.lang-en .lang-slider {
 
     .featured-grid,
     .team-grid,
-    .paket-grid {
+    .paket-grid,
+    .services-grid {
         grid-template-columns: 1fr !important;
     }
     
