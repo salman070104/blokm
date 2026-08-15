@@ -1608,7 +1608,7 @@ html.lang-en .lang-slider {
     }
 
     .sidebar-footer {
-        margin-top: auto;
+        display: none !important;
     }
 
     .sidebar-cta-btn {
