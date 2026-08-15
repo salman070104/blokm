@@ -160,6 +160,16 @@ html.light-theme .hero-tagline {
     color: #ffffff;
 }
 
+/* Force hero secondary button to be white */
+html.light-theme .hero-section .btn-secondary {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.4);
+}
+html.light-theme .hero-section .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
 /* — Light theme button overrides — */
 html.light-theme .btn-primary {
     color: #ffffff;
