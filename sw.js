@@ -1,4 +1,4 @@
-const CACHE_NAME = 'blokm-studio-cache-v2';
+const CACHE_NAME = 'blokm-studio-cache-v3';
 
 // Aset yang akan di-pre-cache agar website bisa dibuka secara instan dan offline
 const PRECACHE_ASSETS = [
@@ -90,9 +90,17 @@ self.addEventListener('fetch', (event) => {
             caches.open(CACHE_NAME).then((cache) => cache.put(event.request, cacheCopy));
           }
           return networkResponse;
-        }).catch(() => {
-          // Fallback jika offline dan cache tidak ditemukan
-          return cachedResponse;
+        }).catch((error) => {
+          console.error('[Service Worker] Fetch failed:', error);
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          // Return a fallback response so the browser doesn't throw ERR_FAILED
+          return new Response('Network error and no cache available.', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: new Headers({ 'Content-Type': 'text/plain' })
+          });
         });
 
         return cachedResponse || networkFetch;
