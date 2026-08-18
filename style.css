@@ -124,9 +124,11 @@ body,
 
 /* — Light theme header overrides — */
 html.light-theme .main-header.scrolled {
-    background: rgba(250, 248, 245, 0.88);
-    box-shadow: 0 1px 0 rgba(var(--color-gold-rgb), 0.1), 0 4px 30px rgba(0, 0, 0, 0.06);
-    border-bottom: 1px solid rgba(var(--color-gold-rgb), 0.08);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 /* — Light theme logo inversion — */
@@ -433,12 +435,12 @@ img {
 
 /* Scrolled state — dark glassmorphism */
 .main-header.scrolled {
-    background: rgba(10, 10, 15, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(15, 15, 20, 0.65);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
     padding: 0.6rem 5%;
-    box-shadow: 0 1px 0 rgba(var(--color-gold-rgb), 0.08), 0 4px 30px rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid rgba(var(--color-gold-rgb), 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
 }
 
 .logo-area {
@@ -1642,15 +1644,19 @@ html.lang-en .lang-slider {
     /* Compact Header Bar for Mobile */
     .main-header {
         padding: 0.6rem 5%;
-        background: rgba(10, 10, 15, 0.92);
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        background: rgba(15, 15, 20, 0.65);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     html.light-theme .main-header {
-        background: rgba(248, 249, 250, 0.95);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     }
 
     .main-nav {
