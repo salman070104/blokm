@@ -1695,7 +1695,6 @@ html.lang-en .lang-slider {
         aspect-ratio: 1;
     }
 
-    .featured-grid,
     .team-grid,
     .paket-grid,
     .services-grid {
@@ -1714,6 +1713,31 @@ html.lang-en .lang-slider {
 
     .stat-label {
         font-size: 0.7rem;
+    }
+
+    /* Apple-style Mobile Sliders for Featured and Testimonials */
+    .featured-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .featured-grid::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .featured-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+    }
+
+    .testimonial-card {
+        flex: 0 0 85%;
+        scroll-snap-align: center;
+        padding: 1.5rem;
     }
 
     .about-grid, 
