@@ -243,7 +243,23 @@ html.light-theme .featured-card-title {
 
 /* — Light theme footer overrides — */
 html.light-theme .site-footer {
-    background: var(--color-bg-elevated);
+    background: #0A192F; /* Dark Blue */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+html.light-theme .site-footer .footer-heading,
+html.light-theme .site-footer .footer-brand p,
+html.light-theme .site-footer .footer-copyright,
+html.light-theme .site-footer .footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+html.light-theme .site-footer .footer-links a:hover {
+    color: var(--color-gold);
+}
+
+html.light-theme .site-footer .logo-img {
+    filter: invert(1) brightness(1); /* Make logo white again */
 }
 
 html.light-theme .footer-copyright a {
