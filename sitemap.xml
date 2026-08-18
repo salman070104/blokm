@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.blokmstudio.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://www.blokmstudio.com/tentang.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.blokmstudio.com/paket.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.blokmstudio.com/gallery.html</loc><priority>0.8</priority></url>
-  <url><loc>https://www.blokmstudio.com/team.html</loc><priority>0.7</priority></url>
-  <url><loc>https://www.blokmstudio.com/kontak.html</loc><priority>0.7</priority></url>
+  <url><loc>https://www.blokmstudio.com/tentang</loc><priority>0.8</priority></url>
+  <url><loc>https://www.blokmstudio.com/paket</loc><priority>0.8</priority></url>
+  <url><loc>https://www.blokmstudio.com/gallery</loc><priority>0.8</priority></url>
+  <url><loc>https://www.blokmstudio.com/team</loc><priority>0.7</priority></url>
+  <url><loc>https://www.blokmstudio.com/kontak</loc><priority>0.7</priority></url>
 </urlset>
