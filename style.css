@@ -1677,28 +1677,63 @@ html.lang-en .lang-slider {
         gap: 2rem;
     }
 
+    .hero-title {
+        font-size: 2.2rem;
+        text-align: left;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        text-align: left;
+        margin-bottom: 2rem;
+    }
+
     .hero-buttons {
-        flex-direction: column;
-        width: 100%;
-        gap: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        width: auto;
+        gap: 0.75rem;
     }
 
     .hero-buttons .btn-primary, 
     .hero-buttons .btn-outline {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
+        width: auto;
+        text-align: left;
+        justify-content: flex-start;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
     }
 
     .hero-photos {
         height: auto;
         aspect-ratio: 1;
+        margin-top: 2rem;
     }
 
     .team-grid,
-    .paket-grid,
-    .services-grid {
+    .paket-grid {
         grid-template-columns: 1fr !important;
+    }
+
+    /* Services Grid 2x2 on Mobile */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 1rem;
+    }
+    .service-card {
+        padding: 1.5rem 1rem;
+    }
+    .service-icon {
+        width: 45px;
+        height: 45px;
+        margin: 0 auto 1rem;
+    }
+    .service-title {
+        font-size: 0.9rem;
+    }
+    .service-desc {
+        font-size: 0.75rem;
     }
     
     .stats-bar {
