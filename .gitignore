@@ -1,0 +1,8 @@
+# Ignore original high-res asset folders
+assets/*/
+!assets/compressed/
+!assets/*.png
+!assets/*.jpg
+!assets/*.jpeg
+!assets/*.webp
+!assets/*.svg
