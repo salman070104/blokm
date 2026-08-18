@@ -440,7 +440,7 @@ document.addEventListener("DOMContentLoaded", () => {
             div.style.animationDelay = `${index * 0.05}s`;
             
             div.innerHTML = `
-                <img src="${item.src}" alt="${item.titleEn}" loading="lazy">
+                <img src="${item.src}" alt="${item.titleEn}" width="${item.width}" height="${item.height}" loading="lazy">
                 <div class="masonry-item-overlay">
                     <div class="masonry-item-info">
                         <span class="category">${item.catLabel}</span>
