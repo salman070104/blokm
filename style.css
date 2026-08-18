@@ -1641,7 +1641,7 @@ html.lang-en .lang-slider {
 
     /* Compact Header Bar for Mobile */
     .main-header {
-        padding: 1rem 5%;
+        padding: 0.6rem 5%;
         background: rgba(10, 10, 15, 0.92);
         backdrop-filter: blur(15px);
         -webkit-backdrop-filter: blur(15px);
