@@ -9,7 +9,7 @@
           "value": "blokmstudiopercetakan.vercel.app"
         }
       ],
-      "destination": "https://www.blokmstudio.com/$1",
+      "destination": "https://blokmstudio.com/$1",
       "permanent": true
     }
   ]
