@@ -259,7 +259,7 @@ html.light-theme .site-footer .footer-links a:hover {
 }
 
 html.light-theme .site-footer .logo-img {
-    filter: invert(1) brightness(1); /* Make logo white again */
+    filter: none; /* Keep original white logo */
 }
 
 html.light-theme .footer-copyright a {
@@ -847,10 +847,34 @@ img {
 /* ==========================================================================
    FEATURED WORK GRID
    ========================================================================== */
-.featured-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+.featured-slider-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.featured-slider {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    scroll-behavior: auto;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    cursor: grab;
+    padding-bottom: 10px;
+}
+
+.featured-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.featured-slider:active {
+    cursor: grabbing;
+}
+
+.featured-slider .featured-card {
+    flex: 0 0 250px; /* smaller width */
+    /* the rest of .featured-card remains the same */
 }
 
 .featured-card {
@@ -1773,15 +1797,7 @@ html.lang-en .lang-slider {
     }
 
     /* Apple-style Mobile Sliders for Featured and Testimonials */
-    .featured-grid {
-        display: flex;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        gap: 1rem;
-        padding-bottom: 1.5rem;
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+    
     .featured-grid::-webkit-scrollbar {
         display: none;
     }
