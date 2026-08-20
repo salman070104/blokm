@@ -2,14 +2,25 @@
   "cleanUrls": true,
   "redirects": [
     {
-      "source": "/(.*)",
+      "source": "/",
       "has": [
         {
           "type": "host",
           "value": "blokmstudiopercetakan.vercel.app"
         }
       ],
-      "destination": "https://blokmstudio.com/$1",
+      "destination": "https://blokmstudio.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "blokmstudiopercetakan.vercel.app"
+        }
+      ],
+      "destination": "https://blokmstudio.com/:path*",
       "permanent": true
     }
   ]
