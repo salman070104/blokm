@@ -182,23 +182,54 @@ const DEFAULT_BERANDA = [
 // ── ID Generator ──────────────────────────────────────────────────────────────
 function genId() { return 'photo_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7); }
 
-// ── LocalStorage ──────────────────────────────────────────────────────────────
-function savePortfolio() { localStorage.setItem(LS_PORTFOLIO_KEY, JSON.stringify(portfolioPhotos)); }
-function saveBeranda()   { localStorage.setItem(LS_BERANDA_KEY,   JSON.stringify(berandaPhotos));  }
-function saveServices()  { localStorage.setItem(LS_SERVICES_KEY,  JSON.stringify(services));        }
-
-function loadData() {
-    const p = localStorage.getItem(LS_PORTFOLIO_KEY);
-    const b = localStorage.getItem(LS_BERANDA_KEY);
-    const s = localStorage.getItem(LS_SERVICES_KEY);
-    portfolioPhotos = p ? JSON.parse(p) : [...DEFAULT_PORTFOLIO];
-    berandaPhotos   = b ? JSON.parse(b) : [...DEFAULT_BERANDA];
-    
-    let loadedServices = s ? JSON.parse(s) : [];
-    if (!loadedServices || loadedServices.length === 0) {
-        loadedServices = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+// ── Cloud API (Vercel Blob via Serverless Functions) ─────────────────────────
+async function saveAllDataToCloud() {
+    const data = {
+        portfolioPhotos,
+        berandaPhotos,
+        services
+    };
+    try {
+        const res = await fetch('/api/data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${ADMIN_PASSWORD}`
+            },
+            body: JSON.stringify(data)
+        });
+        if (!res.ok) throw new Error(await res.text());
+        return true;
+    } catch (e) {
+        showToast('error', 'Gagal menyimpan ke cloud', e.message);
+        return false;
     }
-    services = loadedServices;
+}
+
+function savePortfolio() { saveAllDataToCloud(); }
+function saveBeranda()   { saveAllDataToCloud(); }
+function saveServices()  { saveAllDataToCloud(); }
+
+async function loadData() {
+    try {
+        const res = await fetch('/api/data');
+        if (!res.ok) throw new Error('Gagal fetch dari cloud');
+        const data = await res.json();
+        
+        portfolioPhotos = data.portfolioPhotos && data.portfolioPhotos.length > 0 ? data.portfolioPhotos : [...DEFAULT_PORTFOLIO];
+        berandaPhotos   = data.berandaPhotos && data.berandaPhotos.length > 0 ? data.berandaPhotos : [...DEFAULT_BERANDA];
+        
+        let loadedServices = data.services || [];
+        if (!loadedServices || loadedServices.length === 0) {
+            loadedServices = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+        }
+        services = loadedServices;
+    } catch (e) {
+        console.warn("Gagal load data dari cloud, fallback ke default:", e);
+        portfolioPhotos = [...DEFAULT_PORTFOLIO];
+        berandaPhotos   = [...DEFAULT_BERANDA];
+        services        = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+    }
 }
 
 
@@ -405,8 +436,30 @@ async function handleFiles(files, page) {
         try {
             const result = await compressImage(file);
             const id = genId();
+
+            showToast('info', `Mengupload ${file.name}...`, 'Mohon tunggu');
+            
+            const upRes = await fetch('/api/upload', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${ADMIN_PASSWORD}`
+                },
+                body: JSON.stringify({
+                    filename: file.name,
+                    imageBase64: result.dataUrl
+                })
+            });
+
+            if (!upRes.ok) {
+                const err = await upRes.json();
+                throw new Error(err.error || 'Upload gagal');
+            }
+            const blobData = await upRes.json();
+            const photoUrl = blobData.url;
+
             const photo = {
-                id, src: result.dataUrl, category, titleId, titleEn, catLabel,
+                id, src: photoUrl, category, titleId, titleEn, catLabel,
                 width: result.width, height: result.height,
                 filename: file.name, isUploaded: true,
                 originalSize: result.originalSize, compressedSize: result.compressedSize,
@@ -423,15 +476,15 @@ async function handleFiles(files, page) {
             addToQueue(file, result);
             added++;
         } catch (err) {
-            console.error('Kompresi gagal:', err);
-            showToast('error', `Gagal kompresi: ${file.name}`, err.message);
+            console.error('Proses gagal:', err);
+            showToast('error', `Gagal: ${file.name}`, err.message);
         }
     }
 
     if (added > 0) {
         showToast('success', `${added} foto berhasil ditambahkan!`, `Foto sudah dikompres & masuk ke daftar ${page}`);
         renderPhotoGrid(page);
-        generateExportCode();
+    
     }
 }
 
@@ -469,7 +522,7 @@ function doDelete() {
 
     closeDeleteModal();
     showToast('success', 'Foto berhasil dihapus!', `Foto telah dihapus dari daftar ${page}`);
-    generateExportCode();
+
 }
 
 function closeDeleteModal() {
@@ -512,100 +565,7 @@ function updateTopbar(page) {
     }
 }
 
-// ── Export Code Generator ─────────────────────────────────────────────────────
-function generateExportCode() {
-    generateGalleryJS();
-    generateBerandaHTML();
-    generatePaketHTML();
-}
 
-function generateGalleryJS() {
-    const lines = portfolioPhotos.map(p => {
-        // For uploaded photos: embed base64 directly so it works without a server
-        const src = `"${p.src}"`; // src is either a path OR a base64 dataUrl
-        const comment = p.isUploaded ? ` /* uploaded: ${p.filename} */` : '';
-        return `        { src: ${src}, category: "${p.category}", titleId: "${p.titleId}", titleEn: "${p.titleEn}", catLabel: "${p.catLabel}", width: ${p.width || 1200}, height: ${p.height || 800} },${comment}`;
-    }).join('\n');
-
-    const uploadedCount  = portfolioPhotos.filter(p => p.isUploaded).length;
-    const uploadedNote   = uploadedCount > 0
-        ? `\n// ⚠️  ${uploadedCount} foto yang diupload tersimpan sebagai base64 di dalam kode ini.\n//    Untuk performa lebih baik: simpan file ke assets/ dan ganti src-nya dengan path file.\n`
-        : '';
-
-    const code = `// ============================================================
-// COPY BAGIAN INI ke gallery-script.js
-// ganti const portfolioItems = [ ... ] dengan kode berikut:
-// ============================================================
-${uploadedNote}
-const portfolioItems = [
-${lines}
-];`;
-
-    const el = document.getElementById('export-gallery-code');
-    if (el) el.textContent = code;
-}
-
-function generateBerandaHTML() {
-    const cards = berandaPhotos.map(p => {
-        // src is either a file path OR a base64 dataUrl — both work in img src
-        return `        <div class="featured-card">
-            <img src="${p.src}" alt="${p.titleEn} Photography" loading="lazy">
-            <div class="featured-card-overlay">
-                <span class="featured-card-category">
-                    <span lang="id">${(p.catLabel || p.titleId).toUpperCase()}</span>
-                    <span lang="en">${(p.catLabel || p.titleEn).toUpperCase()}</span>
-                </span>
-            </div>
-        </div>`;
-    }).join('\n');
-
-    const uploadedCount = berandaPhotos.filter(p => p.isUploaded).length;
-    const uploadedNote  = uploadedCount > 0
-        ? `\n<!-- ⚠️ ${uploadedCount} foto beranda tersimpan sebagai base64 inline -->\n`
-        : '';
-
-    const code = `<!-- ============================================================
-     COPY BAGIAN INI ke index.html
-     ganti semua <div class="featured-card">...</div> di dalam
-     <div class="featured-slider" id="featuredSlider"> dengan:
-     ============================================================ -->${uploadedNote}
-
-${cards}`;
-
-    const el = document.getElementById('export-beranda-code');
-    if (el) el.textContent = code;
-}
-
-function switchExportTab(tab) {
-    exportTab = tab;
-    document.querySelectorAll('.export-tab').forEach(t => t.classList.remove('active'));
-    document.querySelector(`.export-tab[data-tab="${tab}"]`)?.classList.add('active');
-
-    document.getElementById('export-gallery-block').classList.toggle('hidden', tab !== 'gallery');
-    document.getElementById('export-beranda-block').classList.toggle('hidden', tab !== 'beranda');
-    document.getElementById('export-paket-block')?.classList.toggle('hidden', tab !== 'paket');
-}
-
-function copyCode(id) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    navigator.clipboard.writeText(el.textContent).then(() => {
-        showToast('success', 'Kode berhasil disalin!', 'Paste ke file yang sesuai');
-    }).catch(() => {
-        showToast('error', 'Gagal menyalin', 'Silakan copy manual');
-    });
-}
-
-function downloadCode(id, filename) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const blob = new Blob([el.textContent], { type: 'text/plain' });
-    const a    = document.createElement('a');
-    a.href     = URL.createObjectURL(blob);
-    a.download = filename;
-    a.click();
-    URL.revokeObjectURL(a.href);
-}
 
 function resetData(page) {
     if (!confirm(`Reset semua data ${page} ke default? Perubahan yang belum di-export akan hilang.`)) return;
@@ -618,7 +578,6 @@ function resetData(page) {
         saveBeranda();
         renderPhotoGrid('beranda');
     }
-    generateExportCode();
     showToast('info', `Data ${page} direset ke default`);
 }
 
@@ -656,14 +615,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const loginPwdInput   = document.getElementById('login-password');
     const loginErrMsg     = document.getElementById('login-error');
 
-    function showDashboard() {
+    async function showDashboard() {
         if (loginScreen) loginScreen.classList.add('hidden');
         if (dashboard)   dashboard.classList.remove('hidden');
-        loadData();
+        await loadData();
         renderPhotoGrid('portfolio');
         renderPhotoGrid('beranda');
         renderServiceList();
-        generateExportCode();
         updateStats();
         switchPage('portfolio');
         // Update services badge
@@ -785,7 +743,7 @@ function resetServicesData() {
     services = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
     saveServices();
     renderServiceList();
-    generateExportCode();
+
     showToast('info', 'Data layanan direset ke default');
 }
 
@@ -968,7 +926,7 @@ function deleteService(id) {
     services = services.filter(s => s.id !== id);
     saveServices();
     renderServiceList();
-    generateExportCode();
+
     showToast('success', `Layanan "${svc.name}" dihapus`);
 }
 
@@ -1001,46 +959,8 @@ function saveService() {
 
     saveServices();
     renderServiceList();
-    generateExportCode();
     closeServiceForm();
 }
 
-// ── Generate Export for paket.html ───────────────────────────────────────────
-function generatePaketHTML() {
-    const checkSVG = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>`;
 
-    const cards = services.map(svc => {
-        const isFeatured = svc.badge === 'POPULAR' || svc.badge === 'PREMIUM';
-        const iconSvg    = SERVICE_ICONS[svc.iconKey] || SERVICE_ICONS.camera;
-        const features   = (svc.features || []).map(f =>
-            `                    <li>${checkSVG}${f}</li>`).join('\n');
-        const waLink     = `https://wa.me/6287858231341?text=Hello%20BLOK%20M%20Studio%2C%20saya%20tertarik%20dengan%20${encodeURIComponent(svc.waMsg || svc.name)}.`;
-        const ctaCls     = isFeatured ? 'package-cta-primary' : 'package-cta-secondary';
-        const badge      = svc.badge ? `\n                <span class="package-badge">${svc.badge}</span>` : '';
-
-        return `            <!-- ${svc.name} -->
-            <div class="package-card${isFeatured ? ' featured' : ''}">${badge}
-                <div class="package-icon">
-                    ${iconSvg}
-                </div>
-                <h3 class="package-name">${svc.name}</h3>
-                <div class="package-price">${svc.price}</div>
-                <ul class="package-features">
-${features}
-                </ul>
-                <a href="${waLink}" target="_blank" class="package-cta ${ctaCls}">
-                    <span lang="id">BOOKING SEKARANG</span><span lang="en">BOOK NOW</span>
-                </a>
-            </div>`;
-    }).join('\n\n');
-
-    const code = `<!-- ============================================================
-     COPY bagian dalam <div class="packages-grid"> di paket.html
-     ============================================================ -->
-
-${cards}`;
-
-    const el = document.getElementById('export-paket-code');
-    if (el) el.textContent = code;
-}
 

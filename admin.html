@@ -94,12 +94,6 @@
 
             <div class="sidebar-nav-label">Tools</div>
 
-            <button class="nav-item" data-page="export">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
-                </svg>
-                Export Kode
-            </button>
 
             <div class="sidebar-nav-label">Quick Links</div>
             <a href="paket.html" target="_blank" class="nav-item">
@@ -449,97 +443,10 @@
                     </div>
                 </div>
 
-                <!-- Export note -->
-                <div style="background:var(--admin-surface);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:20px 24px;margin-top:20px;display:flex;align-items:flex-start;gap:14px;">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-                    <div>
-                        <p style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">Cara apply perubahan ke website</p>
-                        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">Setelah selesai edit, pergi ke tab <b style="color:var(--gold);">Export Kode → paket.html</b>, salin kodenya, lalu paste ke dalam tag <code style="color:var(--gold);background:var(--admin-surface-2);padding:1px 6px;border-radius:4px;">&lt;div class="packages-grid"&gt;</code> di file <code style="color:var(--gold);background:var(--admin-surface-2);padding:1px 6px;border-radius:4px);">paket.html</code>, kemudian push ke GitHub.</p>
-                    </div>
-                </div>
+
             </div>
 
-            <!-- ════════════════════════════════════════════════
-                 PANEL: EXPORT
-                 ════════════════════════════════════════════════ -->
-            <div class="admin-panel" id="panel-export">
-                <div class="export-panel">
-                    <div class="export-panel-header">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                        <div>
-                            <h3>Export Kode</h3>
-                            <p>Copy kode di bawah ini dan paste ke file yang sesuai untuk menerapkan perubahan ke website</p>
-                        </div>
-                    </div>
 
-                    <!-- Step guide -->
-                    <div style="background:var(--admin-surface-2);border:1px solid var(--admin-border);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:20px;">
-                        <p style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">📋 Cara Menggunakan Export</p>
-                        <ol style="font-size:13px;color:var(--text-secondary);padding-left:18px;line-height:2;">
-                            <li>Kelola foto di tab <b style="color:var(--text-primary)">Portfolio</b> atau <b style="color:var(--text-primary)">Beranda</b></li>
-                            <li>Kembali ke halaman ini → klik tab yang sesuai di bawah</li>
-                            <li><b style="color:var(--text-primary)">Salin</b> kode yang dihasilkan</li>
-                            <li>Paste ke file: <code style="background:var(--admin-surface-3);padding:2px 8px;border-radius:4px;color:var(--gold)">gallery-script.js</code> atau <code style="background:var(--admin-surface-3);padding:2px 8px;border-radius:4px;color:var(--gold)">index.html</code></li>
-                            <li>Push ke GitHub → perubahan live di website!</li>
-                        </ol>
-                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">⚠️ Untuk foto yang di-upload langsung, pindahkan file ke folder <code style="color:var(--gold)">assets/compressed/</code> terlebih dahulu.</p>
-                    </div>
-
-                    <!-- Export Tabs -->
-                    <div class="export-tabs">
-                        <button class="export-tab active" data-tab="gallery">gallery-script.js</button>
-                        <button class="export-tab" data-tab="beranda">index.html (Beranda)</button>
-                        <button class="export-tab" data-tab="paket">paket.html (Layanan)</button>
-                    </div>
-
-                    <!-- Gallery JS Code -->
-                    <div id="export-gallery-block">
-                        <pre class="export-code-area" id="export-gallery-code">// Kode akan muncul setelah login...</pre>
-                        <div class="export-actions">
-                            <button class="btn btn-gold" onclick="copyCode('export-gallery-code')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                Salin Kode
-                            </button>
-                            <button class="btn btn-outline" onclick="downloadCode('export-gallery-code','gallery-script-update.js')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
-                                Download .js
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Beranda HTML Code -->
-                    <div id="export-beranda-block" class="hidden">
-                        <pre class="export-code-area" id="export-beranda-code"><!-- Kode akan muncul setelah login... --></pre>
-                        <div class="export-actions">
-                            <button class="btn btn-gold" onclick="copyCode('export-beranda-code')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                Salin Kode
-                            </button>
-                            <button class="btn btn-outline" onclick="downloadCode('export-beranda-code','beranda-featured-cards.html')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
-                                Download .html
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Paket HTML Code -->
-                    <div id="export-paket-block" class="hidden">
-                        <div style="background:var(--admin-surface-2);border:1px solid var(--admin-border);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;font-size:12px;color:var(--text-secondary);line-height:1.8;">
-                            📋 Paste kode ini ke dalam <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">&lt;div class="packages-grid"&gt;</code> di file <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">paket.html</code> (hapus semua <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">&lt;div class="package-card"&gt;</code> yang lama terlebih dahulu).
-                        </div>
-                        <pre class="export-code-area" id="export-paket-code"><!-- Kode akan muncul setelah login... --></pre>
-                        <div class="export-actions">
-                            <button class="btn btn-gold" onclick="copyCode('export-paket-code')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                                Salin Kode
-                            </button>
-                            <button class="btn btn-outline" onclick="downloadCode('export-paket-code','packages-grid.html')">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
-                                Download .html
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
                 <!-- Info Card -->
                 <div style="background:var(--admin-surface);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:24px;margin-top:20px;">
@@ -566,7 +473,7 @@
         </div>
         <h3>Hapus Foto Ini?</h3>
         <p id="delete-modal-title" style="color:var(--gold);font-weight:600;margin:6px 0;"></p>
-        <p>Foto akan dihapus dari daftar admin. Perubahan ini hanya berlaku setelah kamu export kode dan update file website.</p>
+        <p>Foto akan dihapus dari daftar. Pastikan perubahan ini sudah sesuai.</p>
         <img id="delete-modal-thumb" src="" alt="Preview" class="modal-thumb">
         <div class="modal-actions">
             <button class="btn btn-outline" id="delete-cancel-btn">Batal</button>
