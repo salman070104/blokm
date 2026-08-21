@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel — BLOK M Studio</title>
+    <link rel="icon" type="image/png" href="assets/logopovicon.png">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     TOAST CONTAINER
+     ============================================================ -->
+<div class="toast-container" id="toast-container"></div>
+
+<!-- ============================================================
+     LOGIN SCREEN
+     ============================================================ -->
+<div class="login-screen" id="login-screen">
+    <div class="login-card">
+        <div class="login-logo">
+            <img src="assets/logo-white.png" alt="BLOK M Studio">
+            <h1>Admin Panel</h1>
+            <p>BLOK M Studio Photography</p>
+        </div>
+        <form id="login-form" autocomplete="off">
+            <div class="login-form-group">
+                <label for="login-password">Password</label>
+                <input
+                    type="password"
+                    id="login-password"
+                    class="login-input"
+                    placeholder="Masukkan password admin"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+            <button type="submit" class="login-btn">Masuk ke Dashboard</button>
+            <div class="login-error-msg" id="login-error"></div>
+        </form>
+    </div>
+</div>
+
+<!-- ============================================================
+     DASHBOARD (Hidden until login)
+     ============================================================ -->
+<div class="admin-dashboard hidden" id="admin-dashboard">
+
+    <!-- Mobile Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-top">
+            <div class="sidebar-brand">
+                <img src="assets/logopovicon.png" alt="Logo">
+                <div class="sidebar-brand-text">
+                    <h2>BLOK M Studio</h2>
+                    <p>Admin Panel</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-label">Kelola Konten</div>
+
+            <button class="nav-item" data-page="portfolio">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+                    <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+                </svg>
+                Portfolio
+                <span class="nav-badge" id="portfolio-badge">0</span>
+            </button>
+
+            <button class="nav-item" data-page="beranda">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                    <polyline points="9 22 9 12 15 12 15 22"/>
+                </svg>
+                Beranda (Slider)
+            </button>
+
+            <button class="nav-item" data-page="layanan">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/>
+                    <line x1="9" y1="21" x2="9" y2="9"/>
+                </svg>
+                Layanan & Paket
+                <span class="nav-badge" id="services-badge">0</span>
+            </button>
+
+            <div class="sidebar-nav-label">Tools</div>
+
+            <button class="nav-item" data-page="export">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                </svg>
+                Export Kode
+            </button>
+
+            <div class="sidebar-nav-label">Quick Links</div>
+            <a href="paket.html" target="_blank" class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Lihat Layanan
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <button class="sidebar-logout-btn" id="logout-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16 17 21 12 16 7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+                Keluar
+            </button>
+        </div>
+    </aside>
+
+    <!-- ── MAIN ── -->
+    <div class="admin-main">
+
+        <!-- Topbar -->
+        <div class="admin-topbar">
+            <div style="display:flex;align-items:center;gap:12px;">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+                <div class="topbar-title">
+                    <h1 id="topbar-title">Portfolio</h1>
+                    <p id="topbar-sub">Kelola foto galeri portfolio</p>
+                </div>
+            </div>
+            <div class="topbar-actions">
+                <a href="gallery.html" target="_blank" class="btn btn-outline btn-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Lihat Galeri
+                </a>
+                <a href="index.html" target="_blank" class="btn btn-outline btn-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                    Lihat Beranda
+                </a>
+            </div>
+        </div>
+
+        <!-- Content -->
+        <div class="admin-content">
+
+            <!-- ── Stats ── -->
+            <div class="stats-row">
+                <div class="stat-card gold">
+                    <div class="stat-label">Total Portfolio</div>
+                    <div class="stat-value" id="stat-portfolio-count">0</div>
+                    <div class="stat-sub">Foto di galeri</div>
+                </div>
+                <div class="stat-card blue">
+                    <div class="stat-label">Slider Beranda</div>
+                    <div class="stat-value" id="stat-beranda-count">0</div>
+                    <div class="stat-sub">Foto di homepage</div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-label">Total Layanan</div>
+                    <div class="stat-value" id="stat-services-count">0</div>
+                    <div class="stat-sub">Paket & layanan aktif</div>
+                </div>
+                <div class="stat-card red">
+                    <div class="stat-label">Wedding</div>
+                    <div class="stat-value" id="stat-wedding-count">0</div>
+                    <div class="stat-sub">Foto pernikahan</div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 PANEL: PORTFOLIO
+                 ════════════════════════════════════════════════ -->
+            <div class="admin-panel" id="panel-portfolio">
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-section-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                        <div>
+                            <h3>Upload Foto Portfolio</h3>
+                            <p>Foto akan dikompres otomatis ke maks 1200px · quality 80%</p>
+                        </div>
+                    </div>
+
+                    <!-- Config -->
+                    <div class="upload-config">
+                        <div class="config-group">
+                            <label for="port-category">Kategori</label>
+                            <select id="port-category" class="config-select">
+                                <option value="wedding">Wedding — Pernikahan</option>
+                                <option value="prewedding">Prewedding</option>
+                                <option value="portrait">Portrait / Studio</option>
+                                <option value="event" selected>Event / Sekolah</option>
+                            </select>
+                        </div>
+                        <div class="config-group">
+                            <label for="port-title-id">Judul (Indonesia)</label>
+                            <input type="text" id="port-title-id" class="config-input" placeholder="cth: Pernikahan, Wisuda..." value="Foto Baru">
+                        </div>
+                        <div class="config-group">
+                            <label for="port-title-en">Judul (English)</label>
+                            <input type="text" id="port-title-en" class="config-input" placeholder="cth: Wedding, Graduation..." value="New Photo">
+                        </div>
+                    </div>
+
+                    <!-- Drop Zone -->
+                    <div class="upload-zone" id="portfolio-upload-zone" style="margin-top:20px">
+                        <input type="file" id="portfolio-file-input" accept="image/*" multiple>
+                        <div class="upload-zone-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                        </div>
+                        <h4>Drag & Drop foto di sini</h4>
+                        <p>atau <span>klik untuk memilih file</span></p>
+                        <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">JPG, PNG, WEBP · Multiple files didukung · Kompresi otomatis aktif</p>
+                    </div>
+
+                    <!-- Upload Queue -->
+                    <div class="upload-queue" id="portfolio-queue"></div>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="photos-section">
+                    <div class="photos-section-header">
+                        <div>
+                            <h3>Daftar Foto Portfolio</h3>
+                        </div>
+                        <button class="btn btn-outline btn-sm" id="reset-portfolio-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                            Reset ke Default
+                        </button>
+                    </div>
+                    <div class="photos-filter-bar">
+                        <button class="filter-chip active" data-page="portfolio" data-cat="all">Semua</button>
+                        <button class="filter-chip" data-page="portfolio" data-cat="wedding">Wedding</button>
+                        <button class="filter-chip" data-page="portfolio" data-cat="prewedding">Prewedding</button>
+                        <button class="filter-chip" data-page="portfolio" data-cat="portrait">Portrait</button>
+                        <button class="filter-chip" data-page="portfolio" data-cat="event">Event</button>
+                    </div>
+                    <div class="admin-photo-grid" id="portfolio-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 PANEL: BERANDA
+                 ════════════════════════════════════════════════ -->
+            <div class="admin-panel" id="panel-beranda">
+
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <div class="upload-section-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                        <div>
+                            <h3>Upload Foto Beranda (Featured Slider)</h3>
+                            <p>Foto ini tampil di slider halaman utama · Dikompres otomatis</p>
+                        </div>
+                    </div>
+
+                    <!-- Config -->
+                    <div class="upload-config">
+                        <div class="config-group">
+                            <label for="home-category">Kategori</label>
+                            <select id="home-category" class="config-select">
+                                <option value="wedding">Wedding</option>
+                                <option value="prewedding">Prewedding</option>
+                                <option value="portrait">Portrait Studio</option>
+                                <option value="event" selected>Event / Sekolah</option>
+                            </select>
+                        </div>
+                        <div class="config-group">
+                            <label for="home-title-id">Label (Indonesia)</label>
+                            <input type="text" id="home-title-id" class="config-input" placeholder="cth: PERNIKAHAN, WISUDA..." value="FOTO BARU">
+                        </div>
+                        <div class="config-group">
+                            <label for="home-title-en">Label (English)</label>
+                            <input type="text" id="home-title-en" class="config-input" placeholder="cth: WEDDING, EVENT..." value="NEW PHOTO">
+                        </div>
+                    </div>
+
+                    <!-- Drop Zone -->
+                    <div class="upload-zone" id="beranda-upload-zone" style="margin-top:20px">
+                        <input type="file" id="beranda-file-input" accept="image/*" multiple>
+                        <div class="upload-zone-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                        </div>
+                        <h4>Upload foto untuk slider beranda</h4>
+                        <p>atau <span>klik untuk memilih file</span></p>
+                        <p style="margin-top:8px;font-size:12px;color:var(--text-muted)">Direkomendasikan: foto landscape (horizontal) · Kompresi otomatis aktif</p>
+                    </div>
+
+                    <!-- Upload Queue -->
+                    <div class="upload-queue" id="beranda-queue"></div>
+                </div>
+
+                <!-- Photo Grid -->
+                <div class="photos-section">
+                    <div class="photos-section-header">
+                        <div>
+                            <h3>Foto Slider Beranda</h3>
+                        </div>
+                        <button class="btn btn-outline btn-sm" id="reset-beranda-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                            Reset ke Default
+                        </button>
+                    </div>
+                    <div class="photos-filter-bar">
+                        <button class="filter-chip active" data-page="beranda" data-cat="all">Semua</button>
+                        <button class="filter-chip" data-page="beranda" data-cat="wedding">Wedding</button>
+                        <button class="filter-chip" data-page="beranda" data-cat="prewedding">Prewedding</button>
+                        <button class="filter-chip" data-page="beranda" data-cat="portrait">Portrait</button>
+                        <button class="filter-chip" data-page="beranda" data-cat="event">Event</button>
+                    </div>
+                    <div class="admin-photo-grid" id="beranda-grid">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 PANEL: LAYANAN & PAKET
+                 ════════════════════════════════════════════════ -->
+            <div class="admin-panel" id="panel-layanan">
+
+                <!-- Add Button -->
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+                    <div>
+                        <h2 style="font-size:16px;font-weight:700;">Daftar Layanan & Paket</h2>
+                        <p style="font-size:12px;color:var(--text-secondary);margin-top:2px;">Kelola semua paket yang tampil di halaman <code style="color:var(--gold);">paket.html</code></p>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                        <button class="btn btn-outline btn-sm" id="reset-services-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+                            Reset ke Default
+                        </button>
+                        <button class="btn btn-gold" id="add-service-btn">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            Tambah Layanan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ── Form Tambah / Edit Layanan (Hidden by default) ── -->
+                <div class="service-form-section hidden" id="svc-form-section">
+                    <div class="form-toggle-bar">
+                        <h3 id="svc-form-title">Tambah Layanan Baru</h3>
+                        <button class="btn btn-outline btn-sm" id="svc-form-cancel" type="button">Batal</button>
+                    </div>
+
+                    <form id="svc-form">
+                        <!-- Row 1: Nama & Harga -->
+                        <div class="form-grid" style="margin-bottom:16px;">
+                            <div class="form-group">
+                                <label class="form-label" for="svc-name">Nama Layanan *</label>
+                                <input type="text" id="svc-name" class="form-input" placeholder="cth: Paket A, Wedding Premium..." required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="svc-price">Harga *</label>
+                                <input type="text" id="svc-price" class="form-input" placeholder="cth: Rp 1.500.000" required>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Kategori, Badge, Pesan WA -->
+                        <div class="form-grid-3" style="margin-bottom:16px;">
+                            <div class="form-group">
+                                <label class="form-label" for="svc-category">Kategori</label>
+                                <select id="svc-category" class="form-select">
+                                    <option value="wedding">Wedding / Pernikahan</option>
+                                    <option value="prewedding">Prewedding</option>
+                                    <option value="portrait">Portrait / Studio</option>
+                                    <option value="event">Event / Sekolah</option>
+                                    <option value="other">Lainnya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="svc-badge">Badge (Opsional)</label>
+                                <select id="svc-badge" class="form-select">
+                                    <option value="">Tidak ada</option>
+                                    <option value="POPULAR">POPULAR ⭐</option>
+                                    <option value="PREMIUM">PREMIUM 💎</option>
+                                    <option value="NEW">NEW 🆕</option>
+                                    <option value="PROMO">PROMO 🔥</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="svc-wa-msg">Teks Pesan WA</label>
+                                <input type="text" id="svc-wa-msg" class="form-input" placeholder="cth: Paket A Wedding">
+                            </div>
+                        </div>
+
+                        <!-- Icon Picker -->
+                        <div class="form-group" style="margin-bottom:16px;">
+                            <label class="form-label">Pilih Ikon Kartu</label>
+                            <div class="icon-picker" id="svc-icon-picker">
+                                <!-- Rendered by JS -->
+                            </div>
+                        </div>
+
+                        <!-- Fitur / Features -->
+                        <div class="form-group" style="margin-bottom:20px;">
+                            <label class="form-label">Fitur / Isi Paket</label>
+                            <div class="feature-input-row">
+                                <input type="text" id="svc-feature-input" class="form-input" placeholder="cth: 2 Roll Photo (80 Lembar) · Enter untuk tambah">
+                                <button type="button" id="svc-feature-add" class="btn btn-outline btn-sm">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    Tambah
+                                </button>
+                            </div>
+                            <div class="features-list-preview" id="svc-features-list">
+                                <p style="font-size:12px;color:var(--text-muted);padding:8px 0;">Belum ada fitur. Tambahkan di atas.</p>
+                            </div>
+                        </div>
+
+                        <!-- Submit -->
+                        <div style="display:flex;gap:12px;">
+                            <button type="submit" class="btn btn-gold">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                                Simpan Layanan
+                            </button>
+                            <button type="button" class="btn btn-outline" id="svc-form-cancel-bottom">Batal</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ── Filter by Category ── -->
+                <div class="cat-section-tabs">
+                    <button class="cat-section-tab active" data-scat="all">Semua</button>
+                    <button class="cat-section-tab" data-scat="wedding">Wedding</button>
+                    <button class="cat-section-tab" data-scat="prewedding">Prewedding</button>
+                    <button class="cat-section-tab" data-scat="portrait">Portrait</button>
+                    <button class="cat-section-tab" data-scat="event">Event</button>
+                    <button class="cat-section-tab" data-scat="other">Lainnya</button>
+                </div>
+
+                <!-- ── Service List ── -->
+                <div class="photos-section">
+                    <div class="photos-section-header">
+                        <h3>Daftar Layanan Aktif</h3>
+                        <span style="font-size:12px;color:var(--text-secondary);">Klik Edit untuk mengubah, atau hapus</span>
+                    </div>
+                    <div class="service-list" id="service-list">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Export note -->
+                <div style="background:var(--admin-surface);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:20px 24px;margin-top:20px;display:flex;align-items:flex-start;gap:14px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <div>
+                        <p style="font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px;">Cara apply perubahan ke website</p>
+                        <p style="font-size:12px;color:var(--text-secondary);line-height:1.8;">Setelah selesai edit, pergi ke tab <b style="color:var(--gold);">Export Kode → paket.html</b>, salin kodenya, lalu paste ke dalam tag <code style="color:var(--gold);background:var(--admin-surface-2);padding:1px 6px;border-radius:4px;">&lt;div class="packages-grid"&gt;</code> di file <code style="color:var(--gold);background:var(--admin-surface-2);padding:1px 6px;border-radius:4px);">paket.html</code>, kemudian push ke GitHub.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ════════════════════════════════════════════════
+                 PANEL: EXPORT
+                 ════════════════════════════════════════════════ -->
+            <div class="admin-panel" id="panel-export">
+                <div class="export-panel">
+                    <div class="export-panel-header">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        <div>
+                            <h3>Export Kode</h3>
+                            <p>Copy kode di bawah ini dan paste ke file yang sesuai untuk menerapkan perubahan ke website</p>
+                        </div>
+                    </div>
+
+                    <!-- Step guide -->
+                    <div style="background:var(--admin-surface-2);border:1px solid var(--admin-border);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:20px;">
+                        <p style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:10px;">📋 Cara Menggunakan Export</p>
+                        <ol style="font-size:13px;color:var(--text-secondary);padding-left:18px;line-height:2;">
+                            <li>Kelola foto di tab <b style="color:var(--text-primary)">Portfolio</b> atau <b style="color:var(--text-primary)">Beranda</b></li>
+                            <li>Kembali ke halaman ini → klik tab yang sesuai di bawah</li>
+                            <li><b style="color:var(--text-primary)">Salin</b> kode yang dihasilkan</li>
+                            <li>Paste ke file: <code style="background:var(--admin-surface-3);padding:2px 8px;border-radius:4px;color:var(--gold)">gallery-script.js</code> atau <code style="background:var(--admin-surface-3);padding:2px 8px;border-radius:4px;color:var(--gold)">index.html</code></li>
+                            <li>Push ke GitHub → perubahan live di website!</li>
+                        </ol>
+                        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">⚠️ Untuk foto yang di-upload langsung, pindahkan file ke folder <code style="color:var(--gold)">assets/compressed/</code> terlebih dahulu.</p>
+                    </div>
+
+                    <!-- Export Tabs -->
+                    <div class="export-tabs">
+                        <button class="export-tab active" data-tab="gallery">gallery-script.js</button>
+                        <button class="export-tab" data-tab="beranda">index.html (Beranda)</button>
+                        <button class="export-tab" data-tab="paket">paket.html (Layanan)</button>
+                    </div>
+
+                    <!-- Gallery JS Code -->
+                    <div id="export-gallery-block">
+                        <pre class="export-code-area" id="export-gallery-code">// Kode akan muncul setelah login...</pre>
+                        <div class="export-actions">
+                            <button class="btn btn-gold" onclick="copyCode('export-gallery-code')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Salin Kode
+                            </button>
+                            <button class="btn btn-outline" onclick="downloadCode('export-gallery-code','gallery-script-update.js')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
+                                Download .js
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Beranda HTML Code -->
+                    <div id="export-beranda-block" class="hidden">
+                        <pre class="export-code-area" id="export-beranda-code"><!-- Kode akan muncul setelah login... --></pre>
+                        <div class="export-actions">
+                            <button class="btn btn-gold" onclick="copyCode('export-beranda-code')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Salin Kode
+                            </button>
+                            <button class="btn btn-outline" onclick="downloadCode('export-beranda-code','beranda-featured-cards.html')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
+                                Download .html
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Paket HTML Code -->
+                    <div id="export-paket-block" class="hidden">
+                        <div style="background:var(--admin-surface-2);border:1px solid var(--admin-border);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:12px;font-size:12px;color:var(--text-secondary);line-height:1.8;">
+                            📋 Paste kode ini ke dalam <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">&lt;div class="packages-grid"&gt;</code> di file <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">paket.html</code> (hapus semua <code style="color:var(--gold);background:var(--admin-surface-3);padding:1px 6px;border-radius:4px;">&lt;div class="package-card"&gt;</code> yang lama terlebih dahulu).
+                        </div>
+                        <pre class="export-code-area" id="export-paket-code"><!-- Kode akan muncul setelah login... --></pre>
+                        <div class="export-actions">
+                            <button class="btn btn-gold" onclick="copyCode('export-paket-code')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                                Salin Kode
+                            </button>
+                            <button class="btn btn-outline" onclick="downloadCode('export-paket-code','packages-grid.html')">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="8 17 12 21 16 17"/><line x1="12" y1="21" x2="12" y2="3"/></svg>
+                                Download .html
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div style="background:var(--admin-surface);border:1px solid rgba(201,168,76,0.2);border-radius:var(--radius);padding:24px;margin-top:20px;">
+                    <p style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;">🔑 Tentang Password Admin</p>
+                    <p style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
+                        Password default: <code style="background:var(--admin-surface-2);padding:2px 10px;border-radius:4px;color:var(--text-primary);font-size:13px;">blokmstudio2024</code><br>
+                        Untuk mengganti password, buka file <code style="background:var(--admin-surface-2);padding:2px 8px;border-radius:4px;color:var(--gold);">admin-script.js</code>
+                        dan ubah nilai <code style="background:var(--admin-surface-2);padding:2px 8px;border-radius:4px;color:var(--gold);">ADMIN_PASSWORD</code> di baris pertama.
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- /.admin-content -->
+    </div><!-- /.admin-main -->
+</div><!-- /.admin-dashboard -->
+
+<!-- ============================================================
+     DELETE CONFIRMATION MODAL
+     ============================================================ -->
+<div class="modal-overlay" id="delete-modal">
+    <div class="modal-box">
+        <div class="modal-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+        </div>
+        <h3>Hapus Foto Ini?</h3>
+        <p id="delete-modal-title" style="color:var(--gold);font-weight:600;margin:6px 0;"></p>
+        <p>Foto akan dihapus dari daftar admin. Perubahan ini hanya berlaku setelah kamu export kode dan update file website.</p>
+        <img id="delete-modal-thumb" src="" alt="Preview" class="modal-thumb">
+        <div class="modal-actions">
+            <button class="btn btn-outline" id="delete-cancel-btn">Batal</button>
+            <button class="btn btn-danger" id="delete-confirm-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/></svg>
+                Ya, Hapus
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="admin-script.js"></script>
+</body>
+</html>
