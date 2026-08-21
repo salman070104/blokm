@@ -45,9 +45,15 @@ export default async function handler(req, res) {
     try {
       const data = req.body;
       
+      // Ambil daftar blob database.json yang lama
+      const { list, del } = require('@vercel/blob');
+      const { blobs } = await list({ prefix: 'database.json' });
+      if (blobs.length > 0) {
+        const urlsToDelete = blobs.map(b => b.url);
+        await del(urlsToDelete);
+      }
+
       // Simpan ke Vercel Blob
-      // Kita set addRandomSuffix: false agar selalu menimpa file yang sama (database.json)
-      // Note: Vercel Blob akan meng-overwrite file yang sama jika namanya sama dan addRandomSuffix = false
       const blob = await put('database.json', JSON.stringify(data), {
         access: 'public',
         addRandomSuffix: false,
