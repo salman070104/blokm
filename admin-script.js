@@ -193,7 +193,12 @@ function loadData() {
     const s = localStorage.getItem(LS_SERVICES_KEY);
     portfolioPhotos = p ? JSON.parse(p) : [...DEFAULT_PORTFOLIO];
     berandaPhotos   = b ? JSON.parse(b) : [...DEFAULT_BERANDA];
-    services        = s ? JSON.parse(s) : JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+    
+    let loadedServices = s ? JSON.parse(s) : [];
+    if (!loadedServices || loadedServices.length === 0) {
+        loadedServices = JSON.parse(JSON.stringify(DEFAULT_SERVICES));
+    }
+    services = loadedServices;
 }
 
 
