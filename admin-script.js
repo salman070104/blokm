@@ -14,6 +14,131 @@ const LS_SERVICES_KEY = 'blokm_services';
 const COMPRESS_MAX_PX = 1200; // Sisi panjang maks setelah kompresi
 const COMPRESS_QUALITY = 0.80; // JPEG quality 0–1
 
+const DEFAULT_SERVICES = [
+  {
+    "id": "svc_default_0",
+    "name": "Paket File Only",
+    "price": "Rp 500.000",
+    "category": "wedding",
+    "badge": "",
+    "iconKey": "file",
+    "waMsg": "Paket File Only",
+    "features": [
+      "1 Roll (40 File Edit)",
+      "File Google Drive"
+    ]
+  },
+  {
+    "id": "svc_default_1",
+    "name": "Paket A",
+    "price": "Rp 700.000",
+    "category": "wedding",
+    "badge": "",
+    "iconKey": "camera",
+    "waMsg": "Paket A",
+    "features": [
+      "1 Roll Photo (40 Lembar)",
+      "1 Album Costum Kulit",
+      "File Google Drive"
+    ]
+  },
+  {
+    "id": "svc_default_2",
+    "name": "Paket B",
+    "price": "Rp 1.300.000",
+    "category": "wedding",
+    "badge": "",
+    "iconKey": "image",
+    "waMsg": "Paket B",
+    "features": [
+      "2 Roll Photo (80 Lembar)",
+      "10RP 1 Lembar",
+      "1 Album Costum Jombo Kulit",
+      "File Google Drive"
+    ]
+  },
+  {
+    "id": "svc_default_3",
+    "name": "Paket C",
+    "price": "Rp 2.000.000",
+    "category": "wedding",
+    "badge": "POPULAR",
+    "iconKey": "heart",
+    "waMsg": "Paket C",
+    "features": [
+      "2 Roll Photo (80 Lembar)",
+      "10RP 1 Lembar",
+      "1 Album Costum Jombo Kulit",
+      "Video Liputan + Treaser",
+      "Flasdisk 8GB"
+    ]
+  },
+  {
+    "id": "svc_default_4",
+    "name": "Paket D",
+    "price": "Rp 3.500.000",
+    "category": "wedding",
+    "badge": "",
+    "iconKey": "star",
+    "waMsg": "Paket D",
+    "features": [
+      "1 Album Kolase",
+      "1 Album Photo Keluarga",
+      "All File Flasdisk 8GB",
+      "Free Cetakan 12RP + Bingkai",
+      "Flasdisk 4GB"
+    ]
+  },
+  {
+    "id": "svc_default_5",
+    "name": "Paket E",
+    "price": "Rp 4.500.000",
+    "category": "wedding",
+    "badge": "",
+    "iconKey": "award",
+    "waMsg": "Paket E",
+    "features": [
+      "1 Album Kolase",
+      "1 Album Smart Album",
+      "Video Liputan + Treaser",
+      "All File Flasdisk 8GB",
+      "Free Cetakan 12RP + Bingkai"
+    ]
+  },
+  {
+    "id": "svc_default_6",
+    "name": "Paket F",
+    "price": "Rp 6.000.000",
+    "category": "wedding",
+    "badge": "PREMIUM",
+    "iconKey": "layers",
+    "waMsg": "Paket F (Premium)",
+    "features": [
+      "1 Album Kolase",
+      "1 Album Smart Album",
+      "Video Cinematic",
+      "Video Liputan",
+      "All File Flasdisk 16GB",
+      "Free Cetakan 12RP + Bingkai"
+    ]
+  },
+  {
+    "id": "svc_default_7",
+    "name": "Pembuatan Website",
+    "price": "Mulai dari Rp 1.500.000",
+    "category": "other",
+    "badge": "NEW",
+    "iconKey": "monitor",
+    "waMsg": "Jasa Pembuatan Website",
+    "features": [
+      "Desain modern & responsif",
+      "Optimasi SEO dasar",
+      "Integrasi media sosial",
+      "Maintenance 1 bulan gratis"
+    ]
+  }
+];
+
 // ── State ─────────────────────────────────────────────────────────────────────
 let portfolioPhotos  = [];  // { id, src, category, titleId, titleEn, catLabel, width, height, filename }
 let berandaPhotos    = [];  // { id, src, category, titleId, titleEn, catLabel, filename }
