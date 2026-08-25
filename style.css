@@ -1292,6 +1292,19 @@ img {
     box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
 }
 
+.footer-social-btn[aria-label="TikTok"] {
+    background: rgba(254, 44, 85, 0.15);
+    border: 1px solid rgba(254, 44, 85, 0.3);
+    color: #FE2C55;
+}
+.footer-social-btn[aria-label="TikTok"]:hover {
+    background: #FE2C55;
+    border-color: #FE2C55;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(254, 44, 85, 0.4);
+}
+
 .footer-bottom {
     border-top: 1px solid var(--color-border);
     padding-top: 2rem;
