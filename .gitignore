@@ -7,3 +7,10 @@ assets/*/
 !assets/*.webp
 !assets/*.svg
 node_modules/
+upload_cache.json
+database_backup_live.json
+upload_to_blob.py
+.DS_Store
+*.DS_Store
+
+
